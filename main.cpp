@@ -25,7 +25,7 @@ bool compareByProb(const WezelDrzewa &a, const WezelDrzewa &b)
     return a.probability > b.probability;
 }
 
-void writeBinaryTree(WezelDrzewa *p, ostream &out, string prevstring)
+void writeBinaryTree(WezelDrzewa *p, string prevstring)
 {
     if (p)
     {
@@ -35,28 +35,30 @@ void writeBinaryTree(WezelDrzewa *p, ostream &out, string prevstring)
             slownik.insert(std::pair<char, string>(char(p->ch[0]), prevstring));
         }
 
-        writeBinaryTree(p->left, out, prevstring + "0");
-        writeBinaryTree(p->right, out, prevstring + "1");
+        writeBinaryTree(p->left, prevstring + "0");
+        writeBinaryTree(p->right, prevstring + "1");
     }
 }
 
 template <typename K, typename V>
 void print_map(std::map<K, V> const &m)
 {
+    ofstream plik;
+    plik.open("test.txt");
+
     for (auto const &pair : m)
     {
+        plik << pair.first << " " << pair.second << ", ";
         std::cout << "{" << pair.first << ": " << pair.second << "}\n";
     }
+    plik.close();
 }
 
 int main()
 {
-    ofstream plik;
     // WezelDrzewa *n, *x, *r;
     map<char, double> dane;
     vector<WezelDrzewa> elementyDoUtworzeniaDrzewa;
-
-    plik.open("test.txt");
 
     sort(napis.begin(), napis.end());
     for (int i = 0; i < napis.length(); i++)
@@ -117,8 +119,7 @@ int main()
     }
     WezelDrzewa *kopia = new WezelDrzewa;
     *kopia = elementyDoUtworzeniaDrzewa.back();
-    writeBinaryTree(kopia, plik, "");
-    // print_map(dane);
-    plik.close();
+    writeBinaryTree(kopia, "");
+    print_map(slownik);
     return 1;
 }
