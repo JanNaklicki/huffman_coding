@@ -10,68 +10,97 @@
 #include <fstream>
 
 using namespace std;
+string napis = "cba";
 map<char, string> slownik;
-
-string napis = "123456789";
 struct WezelDrzewa
 {
     struct WezelDrzewa *parent, *left, *right;
     string ch;
     double probability;
 };
-
 bool compareByProb(const WezelDrzewa &a, const WezelDrzewa &b)
 {
     return a.probability > b.probability;
 }
-
-void writeBinaryTree(WezelDrzewa *p, string prevstring)
+pair<string, char> splitString(string napis)
+{
+    pair<string, char> wynik;
+    string znak;
+    string kod;
+    bool space = false;
+    for (int i = 0; i < napis.length(); i++)
+    {
+        if (napis[i] == ' ')
+        {
+            space = true;
+            continue;
+        }
+        if (!space)
+        {
+            znak += napis[i];
+        }
+        else
+        {
+            kod += napis[i];
+        }
+    }
+    wynik.second = char(stoi(znak));
+    wynik.first = kod;
+    // cout << wynik.first << endl;
+    // cout << kod;
+    return wynik;
+}
+void createDictionary(WezelDrzewa *p, string prevstring = "")
 {
     if (p)
     {
         if (int(p->ch[0]) != 0)
         {
-            cout << "asci number: " << int(p->ch[0]) << " kod do znaku " << prevstring << "   Znak: " << p->ch << endl;
+            // cout << "asci number: " << int(p->ch[0]) << " kod do znaku " << prevstring << "   Znak: " << p->ch << endl;
             slownik.insert(std::pair<char, string>(char(p->ch[0]), prevstring));
         }
-
-        writeBinaryTree(p->left, prevstring + "0");
-        writeBinaryTree(p->right, prevstring + "1");
+        createDictionary(p->left, prevstring + "0");
+        createDictionary(p->right, prevstring + "1");
     }
 }
-
 template <typename K, typename V>
 void print_map(std::map<K, V> const &m)
 {
     ofstream plik;
-    plik.open("test.txt");
-
+    plik.open("slownik.txt");
     for (auto const &pair : m)
     {
-        plik << pair.first << " " << pair.second << ", ";
-        std::cout << "{" << pair.first << ": " << pair.second << "}\n";
+        plik << int(pair.first) << " " << pair.second << '\n';
+        // std::cout << "{" << pair.first << ": " << pair.second << "}\n";
     }
     plik.close();
 }
 
-int main()
+void HuffmanEncode()
 {
-    // WezelDrzewa *n, *x, *r;
+    int input_length = 0;
     map<char, double> dane;
     vector<WezelDrzewa> elementyDoUtworzeniaDrzewa;
-
-    sort(napis.begin(), napis.end());
-    for (int i = 0; i < napis.length(); i++)
+    string line;
+    ifstream infile("message.txt");
+    //Put input characters into map
+    while (getline(infile, line))
     {
-        dane[napis[i]]++;
+        input_length += line.length();
+        for (int i = 0; i < line.length(); i++)
+        {
+            dane[line[i]]++;
+        }
     }
+    //Calculate porbbability
     for (auto &it : dane)
     {
-        dane[it.first] = it.second / napis.length();
+        dane[it.first] = it.second / input_length;
     }
+    //Convert characters with prob to tree nodes
     for (auto const &pair : dane)
     {
-        std::cout << "{" << pair.first << ": " << pair.second << "}\n";
+        // std::cout << "{" << pair.first << ": " << pair.second << "}\n";
         WezelDrzewa x;
         x.left = NULL;
         x.right = NULL;
@@ -79,18 +108,7 @@ int main()
         x.probability = pair.second;
         elementyDoUtworzeniaDrzewa.push_back(x);
     }
-    cout << endl;
-    cout << endl;
-    sort(elementyDoUtworzeniaDrzewa.begin(), elementyDoUtworzeniaDrzewa.end(), compareByProb);
-
-    for (int i = 0; i < elementyDoUtworzeniaDrzewa.size(); i++)
-    {
-        cout << elementyDoUtworzeniaDrzewa[i].probability << endl;
-    }
-
-    cout << endl;
-    cout << endl;
-
+    //Create tree from nodes
     while (elementyDoUtworzeniaDrzewa.size() > 1)
     {
 
@@ -119,7 +137,59 @@ int main()
     }
     WezelDrzewa *kopia = new WezelDrzewa;
     *kopia = elementyDoUtworzeniaDrzewa.back();
-    writeBinaryTree(kopia, "");
+    // Create dictionary
+    createDictionary(kopia);
+    // Compress message
+    ofstream compressed("compressed.txt");
+    ifstream file("message.txt");
+    while (getline(file, line))
+    {
+        input_length += line.length();
+        for (int i = 0; i < line.length(); i++)
+        {
+            compressed << slownik[line[i]];
+        }
+    }
+    compressed.close();
+    file.close();
     print_map(slownik);
+}
+void HuffmanDecode()
+{
+    pair<string, char> dane;
+    map<string, char> decoDic;
+    map<string, char>::iterator it;
+
+    ifstream dict("slownik.txt");
+    string line;
+    while (getline(dict, line))
+    {
+        // cout << splitString(line).first << " " << splitString(line).second << endl;
+        decoDic.insert(pair<string, char>(splitString(line).first, splitString(line).second));
+    }
+    dict.close();
+    ifstream codedmessage("compressed.txt");
+    ofstream decodedmessage("decompressed.txt");
+    while (getline(codedmessage, line))
+    {
+        string ciag = "";
+        for (int i = 0; i < line.length(); i++)
+        {
+            ciag += line[i];
+            it = decoDic.find(ciag);
+            if (it != decoDic.end())
+            {
+                decodedmessage << it->second;
+                ciag = "";
+            }
+        }
+    }
+    decodedmessage.close();
+    codedmessage.close();
+}
+int main()
+{
+    // HuffmanEncode();
+    HuffmanDecode();
     return 1;
 }
