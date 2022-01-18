@@ -64,10 +64,10 @@ void createDictionary(WezelDrzewa *p, string prevstring = "")
     }
 }
 template <typename K, typename V>
-void print_map(std::map<K, V> const &m)
+void print_map(std::map<K, V> const &m, string filename)
 {
     ofstream plik;
-    plik.open("slownik.txt");
+    plik.open(filename + "_s.txt");
     for (auto const &pair : m)
     {
         plik << int(pair.first) << " " << pair.second << '\n';
@@ -76,13 +76,13 @@ void print_map(std::map<K, V> const &m)
     plik.close();
 }
 
-void HuffmanEncode()
+void HuffmanEncode(string filename)
 {
     int input_length = 0;
     map<char, double> dane;
     vector<WezelDrzewa> elementyDoUtworzeniaDrzewa;
     string line;
-    ifstream infile("message.txt");
+    ifstream infile(filename + ".txt");
     //Put input characters into map
     while (getline(infile, line))
     {
@@ -140,8 +140,8 @@ void HuffmanEncode()
     // Create dictionary
     createDictionary(kopia);
     // Compress message
-    ofstream compressed("compressed.txt");
-    ifstream file("message.txt");
+    ofstream compressed(filename + "_c.txt");
+    ifstream file(filename + ".txt");
     while (getline(file, line))
     {
         input_length += line.length();
@@ -152,15 +152,15 @@ void HuffmanEncode()
     }
     compressed.close();
     file.close();
-    print_map(slownik);
+    print_map(slownik, filename);
 }
-void HuffmanDecode()
+void HuffmanDecode(string decFile, string dicFile)
 {
     pair<string, char> dane;
     map<string, char> decoDic;
     map<string, char>::iterator it;
 
-    ifstream dict("slownik.txt");
+    ifstream dict(dicFile + ".txt");
     string line;
     while (getline(dict, line))
     {
@@ -168,8 +168,8 @@ void HuffmanDecode()
         decoDic.insert(pair<string, char>(splitString(line).first, splitString(line).second));
     }
     dict.close();
-    ifstream codedmessage("compressed.txt");
-    ofstream decodedmessage("decompressed.txt");
+    ifstream codedmessage(decFile + ".txt");
+    ofstream decodedmessage(decFile + "_d.txt");
     while (getline(codedmessage, line))
     {
         string ciag = "";
@@ -187,9 +187,22 @@ void HuffmanDecode()
     decodedmessage.close();
     codedmessage.close();
 }
-int main()
+int main(int argc, char **argv)
 {
     // HuffmanEncode();
-    HuffmanDecode();
+    cout << argv[2];
+    if (*argv[1] == 'e' && argc == 3)
+    {
+        HuffmanEncode(argv[2]);
+    }
+    else if (*argv[1] == 'd' && argc == 4)
+        HuffmanDecode(argv[2], argv[3]);
+    else
+    {
+        cout << "Podaj poprawne parametry" << '\n';
+        cout << "Kompresja: e nazwa_pilku" << '\n';
+        cout << "Dekompresja: d nazwa_pliku nazwa_slownika";
+    }
+
     return 1;
 }
