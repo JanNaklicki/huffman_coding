@@ -8,9 +8,32 @@
 #include <queue>
 #include <utility>
 #include <fstream>
+#include <bitset>
 
 using namespace std;
-string napis = "cba";
+int binary_to_decimal(string &in)
+{
+    int result = 0;
+    for (int i = 0; i < in.size(); i++)
+        result = result * 2 + in[i] - '0';
+    return result;
+}
+string decimal_to_binary(int in)
+{
+    string temp = "";
+    string result = "";
+    while (in)
+    {
+        temp += ('0' + in % 2);
+        in /= 2;
+    }
+    result.append(8 - temp.size(), '0'); //append '0' ahead to let the result become fixed length of 8
+    for (int i = temp.size() - 1; i >= 0; i--)
+    {
+        result += temp[i];
+    }
+    return result;
+}
 map<char, string> slownik;
 struct WezelDrzewa
 {
@@ -18,9 +41,20 @@ struct WezelDrzewa
     string ch;
     double probability;
 };
-bool compareByProb(const WezelDrzewa &a, const WezelDrzewa &b)
+template <typename K, typename V>
+void writeDic(std::map<K, V> const &m, string filename, int zeros_added, int number_of_bytes)
 {
-    return a.probability > b.probability;
+    // TODO: add number of zeros added
+    ofstream plik;
+    plik.open(filename + "_s.txt");
+    plik << zeros_added << '\n';
+    plik << number_of_bytes << '\n';
+    for (auto const &pair : m)
+    {
+        plik << int(pair.first) << " " << pair.second << '\n';
+        // std::cout << "{" << pair.first << ": " << pair.second << "}\n";
+    }
+    plik.close();
 }
 pair<string, char> splitString(string napis)
 {
@@ -50,6 +84,10 @@ pair<string, char> splitString(string napis)
     // cout << kod;
     return wynik;
 }
+bool compareByProb(const WezelDrzewa &a, const WezelDrzewa &b)
+{
+    return a.probability > b.probability;
+}
 void createDictionary(WezelDrzewa *p, string prevstring = "")
 {
     if (p)
@@ -63,25 +101,13 @@ void createDictionary(WezelDrzewa *p, string prevstring = "")
         createDictionary(p->right, prevstring + "1");
     }
 }
-template <typename K, typename V>
-void print_map(std::map<K, V> const &m, string filename)
-{
-    ofstream plik;
-    plik.open(filename + "_s.txt");
-    for (auto const &pair : m)
-    {
-        plik << int(pair.first) << " " << pair.second << '\n';
-        // std::cout << "{" << pair.first << ": " << pair.second << "}\n";
-    }
-    plik.close();
-}
-
 void HuffmanEncode(string filename)
 {
     int input_length = 0;
     map<char, double> dane;
     vector<WezelDrzewa> elementyDoUtworzeniaDrzewa;
     string line;
+    string compressed_string = "";
     ifstream infile(filename + ".txt");
     //Put input characters into map
     while (getline(infile, line))
@@ -140,19 +166,50 @@ void HuffmanEncode(string filename)
     // Create dictionary
     createDictionary(kopia);
     // Compress message
-    ofstream compressed(filename + "_c.txt");
     ifstream file(filename + ".txt");
     while (getline(file, line))
     {
         input_length += line.length();
         for (int i = 0; i < line.length(); i++)
         {
-            compressed << slownik[line[i]];
+            compressed_string += slownik[line[i]];
         }
     }
-    compressed.close();
     file.close();
-    print_map(slownik, filename);
+    int added_zeros = 8 - compressed_string.length() % 8;
+    // cout << added_zeros << endl;
+    if (added_zeros != 0)
+    {
+        for (int i = 0; i < added_zeros; i++)
+        {
+            compressed_string += "0";
+        }
+    }
+    string in = "";
+    string part_of_string = "";
+    // cout << compressed_string << endl;
+    ofstream compressed(filename + "_c.bin", ios::binary);
+    for (int i = 1; i <= compressed_string.length(); i++)
+    {
+        if (part_of_string.length() == 7)
+        {
+            part_of_string += compressed_string[i - 1];
+            // bitset<8> bits(part_of_string);
+            // cout << part_of_string.length() << "  " << part_of_string << " " << bits << "  " << compressed_string.length() << " " << i << endl;
+            in += (char)binary_to_decimal(part_of_string);
+            part_of_string = "";
+        }
+        else
+        {
+            part_of_string += compressed_string[i - 1];
+            // cout << part_of_string << endl;
+        }
+    }
+    compressed.write(in.c_str(), in.size());
+    cout << in;
+    int number_of_bytes = compressed_string.length() / 8;
+    compressed.close();
+    writeDic(slownik, filename, added_zeros, number_of_bytes);
 }
 void HuffmanDecode(string decFile, string dicFile)
 {
@@ -162,35 +219,54 @@ void HuffmanDecode(string decFile, string dicFile)
 
     ifstream dict(dicFile + ".txt");
     string line;
+    int number_of_zeros_to_remove;
+    getline(dict, line);
+    string number = "";
+    number.push_back(line[0]);
+    number_of_zeros_to_remove = stoi(number);
+    getline(dict, line);
+    int number_of_bytes = stoi(line);
     while (getline(dict, line))
     {
-        // cout << splitString(line).first << " " << splitString(line).second << endl;
         decoDic.insert(pair<string, char>(splitString(line).first, splitString(line).second));
     }
     dict.close();
-    ifstream codedmessage(decFile + ".txt");
-    ofstream decodedmessage(decFile + "_d.txt");
-    while (getline(codedmessage, line))
+    // tu działa
+
+    ifstream codedmessage(decFile + ".bin", ifstream::in);
+    string decodedmessage = "";
+    vector<unsigned char> text;
+    unsigned char textseg;
+    codedmessage.read(reinterpret_cast<char *>(&textseg), 1);
+    while (!codedmessage.eof())
     {
-        string ciag = "";
-        for (int i = 0; i < line.length(); i++)
+        text.push_back(textseg);
+        codedmessage.read(reinterpret_cast<char *>(&textseg), 1);
+    }
+    for (int i = 0; i < text.size(); i++)
+    {
+        decodedmessage += decimal_to_binary(text[i]);
+    }
+
+    ofstream decoded_message_file(decFile + "_d.txt");
+    string ciag = "";
+    for (int i = 0; i < decodedmessage.length() - number_of_zeros_to_remove; i++)
+    {
+        ciag += decodedmessage[i];
+        it = decoDic.find(ciag);
+        if (it != decoDic.end())
         {
-            ciag += line[i];
-            it = decoDic.find(ciag);
-            if (it != decoDic.end())
-            {
-                decodedmessage << it->second;
-                ciag = "";
-            }
+            decoded_message_file << it->second;
+            // cout << ciag << " ";
+            ciag = "";
         }
     }
-    decodedmessage.close();
+    decoded_message_file.close();
     codedmessage.close();
 }
 int main(int argc, char **argv)
 {
     // HuffmanEncode();
-    cout << argv[2];
     if (*argv[1] == 'e' && argc == 3)
     {
         HuffmanEncode(argv[2]);
