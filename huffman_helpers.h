@@ -140,25 +140,23 @@ WezelDrzewa create_tree(map<char, double> chars_with_prob)
     //Create tree from nodes
     while (elementyDoUtworzeniaDrzewa.size() > 1)
     {
-        WezelDrzewa *kopia = new WezelDrzewa;
-        *kopia = elementyDoUtworzeniaDrzewa.back();
+        WezelDrzewa *node1 = new WezelDrzewa(elementyDoUtworzeniaDrzewa.back());
         elementyDoUtworzeniaDrzewa.pop_back();
-        WezelDrzewa *kopia2 = new WezelDrzewa;
-        *kopia2 = elementyDoUtworzeniaDrzewa.back();
+        WezelDrzewa *node2 = new WezelDrzewa(elementyDoUtworzeniaDrzewa.back());
         elementyDoUtworzeniaDrzewa.pop_back();
 
         WezelDrzewa x;
         x.ch = "";
-        x.probability = kopia->probability + kopia2->probability;
-        if (kopia->probability < kopia2->probability)
+        x.probability = node1->probability + node2->probability;
+        if (node1->probability < node2->probability)
         {
-            x.left = kopia;
-            x.right = kopia2;
+            x.left = node1;
+            x.right = node2;
         }
         else
         {
-            x.left = kopia2;
-            x.right = kopia;
+            x.left = node2;
+            x.right = node1;
         }
         elementyDoUtworzeniaDrzewa.push_back(x);
         sort(elementyDoUtworzeniaDrzewa.begin(), elementyDoUtworzeniaDrzewa.end(), compareByProb);
@@ -202,15 +200,12 @@ void output_to_binary(string huffman_coded_string, string filename)
         if (part_of_string.length() == 7)
         {
             part_of_string += huffman_coded_string[i - 1];
-            // bitset<8> bits(part_of_string);
-            // cout << part_of_string.length() << "  " << part_of_string << " " << bits << "  " << huffman_coded_string.length() << " " << i << endl;
             in += (char)binary_to_decimal(part_of_string);
             part_of_string = "";
         }
         else
         {
             part_of_string += huffman_coded_string[i - 1];
-            // cout << part_of_string << endl;
         }
     }
     compressed.write(in.c_str(), in.size());
