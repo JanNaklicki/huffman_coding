@@ -28,7 +28,7 @@ string decimal_to_binary(int in)
         temp += ('0' + in % 2);
         in /= 2;
     }
-    result.append(8 - temp.size(), '0'); //append '0' ahead to let the result become fixed length of 8
+    // result.append(8 - temp.size(), '0');
     for (int i = temp.size() - 1; i >= 0; i--)
     {
         result += temp[i];
@@ -43,21 +43,17 @@ struct WezelDrzewa
 };
 
 template <typename K, typename V>
-void writeDic(std::map<K, V> const &m, string filename, int zeros_added, int number_of_bytes)
+void output_dictionary(std::map<K, V> const &m, string filename, int zeros_added)
 {
-    // TODO: add number of zeros added
     ofstream plik;
     plik.open(filename + "_s.txt");
     plik << zeros_added << '\n';
-    plik << number_of_bytes << '\n';
     for (auto const &pair : m)
     {
         plik << int(pair.first) << " " << pair.second << '\n';
-        // std::cout << "{" << pair.first << ": " << pair.second << "}\n";
     }
     plik.close();
 }
-
 
 pair<string, char> splitString(string napis)
 {
@@ -93,16 +89,130 @@ bool compareByProb(const WezelDrzewa &a, const WezelDrzewa &b)
     return a.probability > b.probability;
 }
 
-void createDictionary(WezelDrzewa *p, string prevstring = "")
+void createDictionary(WezelDrzewa *p, string prevstring = "", map<char, string> &slownik)
 {
     if (p)
     {
         if (int(p->ch[0]) != 0)
         {
-            // cout << "asci number: " << int(p->ch[0]) << " kod do znaku " << prevstring << "   Znak: " << p->ch << endl;
             slownik.insert(std::pair<char, string>(char(p->ch[0]), prevstring));
         }
         createDictionary(p->left, prevstring + "0");
         createDictionary(p->right, prevstring + "1");
     }
+}
+
+map<char, double> calculate_probability(string filename)
+{
+    int number_of_characters = 0;
+    string line;
+    map<char, double> dane;
+    ifstream infile(filename + ".txt");
+    while (getline(infile, line))
+    {
+        number_of_characters += line.length();
+        for (int i = 0; i < line.length(); i++)
+        {
+            dane[line[i]]++;
+        }
+    }
+    infile.close();
+    //Calculate porbbability
+    for (auto &it : dane)
+    {
+        dane[it.first] = it.second / number_of_characters;
+    }
+    return dane;
+}
+
+WezelDrzewa create_tree(map<char, double> chars_with_prob)
+{
+    vector<WezelDrzewa> elementyDoUtworzeniaDrzewa;
+    for (auto const &pair : chars_with_prob)
+    {
+        WezelDrzewa x;
+        x.left = NULL;
+        x.right = NULL;
+        x.ch = pair.first;
+        x.probability = pair.second;
+        elementyDoUtworzeniaDrzewa.push_back(x);
+    }
+    //Create tree from nodes
+    while (elementyDoUtworzeniaDrzewa.size() > 1)
+    {
+        WezelDrzewa *kopia = new WezelDrzewa;
+        *kopia = elementyDoUtworzeniaDrzewa.back();
+        elementyDoUtworzeniaDrzewa.pop_back();
+        WezelDrzewa *kopia2 = new WezelDrzewa;
+        *kopia2 = elementyDoUtworzeniaDrzewa.back();
+        elementyDoUtworzeniaDrzewa.pop_back();
+
+        WezelDrzewa x;
+        x.ch = "";
+        x.probability = kopia->probability + kopia2->probability;
+        if (kopia->probability < kopia2->probability)
+        {
+            x.left = kopia;
+            x.right = kopia2;
+        }
+        else
+        {
+            x.left = kopia2;
+            x.right = kopia;
+        }
+        elementyDoUtworzeniaDrzewa.push_back(x);
+        sort(elementyDoUtworzeniaDrzewa.begin(), elementyDoUtworzeniaDrzewa.end(), compareByProb);
+    }
+    return elementyDoUtworzeniaDrzewa.back();
+}
+
+pair<string, int> coded_message(map<char, string> dictionary, string filename)
+{
+    string huffman_coded_string = "";
+    ifstream file(filename + ".txt");
+    string line;
+    while (getline(file, line))
+    {
+        for (int i = 0; i < line.length(); i++)
+        {
+            huffman_coded_string += dictionary[line[i]];
+        }
+    }
+    file.close();
+
+    int number_added_zeros = 8 - huffman_coded_string.length() % 8;
+    if (number_added_zeros != 0)
+    {
+        for (int i = 0; i < number_added_zeros; i++)
+        {
+            huffman_coded_string += "0";
+        }
+    }
+    pair<string, int> result(huffman_coded_string, number_added_zeros);
+    return result;
+}
+
+void output_to_binary(string huffman_coded_string, string filename)
+{
+    string in = "";
+    string part_of_string = "";
+    ofstream compressed(filename + "_c.bin", ios::binary);
+    for (int i = 1; i <= huffman_coded_string.length(); i++)
+    {
+        if (part_of_string.length() == 7)
+        {
+            part_of_string += huffman_coded_string[i - 1];
+            // bitset<8> bits(part_of_string);
+            // cout << part_of_string.length() << "  " << part_of_string << " " << bits << "  " << huffman_coded_string.length() << " " << i << endl;
+            in += (char)binary_to_decimal(part_of_string);
+            part_of_string = "";
+        }
+        else
+        {
+            part_of_string += huffman_coded_string[i - 1];
+            // cout << part_of_string << endl;
+        }
+    }
+    compressed.write(in.c_str(), in.size());
+    compressed.close();
 }

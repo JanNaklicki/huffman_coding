@@ -12,8 +12,6 @@ void HuffmanDecode(string decFile, string dicFile)
     string number = "";
     number.push_back(line[0]);
     number_of_zeros_to_remove = stoi(number);
-    getline(dict, line);
-    int number_of_bytes = stoi(line);
     while (getline(dict, line))
     {
         decoDic.insert(pair<string, char>(splitString(line).first, splitString(line).second));
@@ -52,12 +50,12 @@ void HuffmanDecode(string decFile, string dicFile)
     decoded_message_file.close();
     codedmessage.close();
 }
-    map<char, string> slownik;
+map<char, string> slownik;
 int main(int argc, char **argv)
 {
-    if(argc != 4)
+    if (argc != 4)
     {
-        cout<< "huffman_decoding d file dictionary";
+        cout << "huffman_decoding d file dictionary";
     }
     else
     {
