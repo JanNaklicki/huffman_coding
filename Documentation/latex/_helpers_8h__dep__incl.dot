@@ -1,0 +1,11 @@
+digraph "C:/Users/Jan/Documents/GitLab/huffman-coding/huffman-coding/Helpers.h"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="C:/Users/Jan/Documents\l/GitLab/huffman-coding\l/huffman-coding/Helpers.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="C:/Users/Jan/Documents\l/GitLab/huffman-coding\l/huffman-coding/Helpers.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_helpers_8cpp.html",tooltip=" "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="C:/Users/Jan/Documents\l/GitLab/huffman-coding\l/huffman-coding/huffman\l-coding.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$huffman-coding_8cpp.html",tooltip=" "];
+}

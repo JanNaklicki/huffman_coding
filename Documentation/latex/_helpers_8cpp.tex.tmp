@@ -1,0 +1,297 @@
+\hypertarget{_helpers_8cpp}{}\doxysection{C\+:/\+Users/\+Jan/\+Documents/\+Git\+Lab/huffman-\/coding/huffman-\/coding/\+Helpers.cpp File Reference}
+\label{_helpers_8cpp}\index{C:/Users/Jan/Documents/GitLab/huffman-\/coding/huffman-\/coding/Helpers.cpp@{C:/Users/Jan/Documents/GitLab/huffman-\/coding/huffman-\/coding/Helpers.cpp}}
+{\ttfamily \#include \char`\"{}Helpers.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+map$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$queue$>$}\newline
+{\ttfamily \#include $<$utility$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$bitset$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+Include dependency graph for Helpers.\+cpp\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{_helpers_8cpp_a478c7765ee1e38d6e04cce8232106b11}{binary\+\_\+to\+\_\+decimal}} (string \&in)
+\item 
+string \mbox{\hyperlink{_helpers_8cpp_a6df5ebbafa5429748f30924fb6120df1}{decimal\+\_\+to\+\_\+binary}} (int in)
+\item 
+{\footnotesize template$<$typename K , typename V $>$ }\\void \mbox{\hyperlink{_helpers_8cpp_a60b7501d74b0f191a79d1c15d35f4aba}{output\+\_\+dictionary}} (std\+::map$<$ K, V $>$ const \&m, string filename, int zeros\+\_\+added)
+\item 
+void \mbox{\hyperlink{_helpers_8cpp_a9bbb8f910d2953dbd15631058512cbef}{create\+Dictionary}} (\mbox{\hyperlink{struct_wezel_drzewa}{Wezel\+Drzewa}} $\ast$p, map$<$ char, string $>$ \&\mbox{\hyperlink{_helpers_8cpp_aefac69ea7c86f84362f36fe9e71b3ff5}{dictionary}}, string prevstring)
+\item 
+pair$<$ string, char $>$ \mbox{\hyperlink{_helpers_8cpp_a46664bdcd79573e1371942d595a173fb}{split\+String}} (string napis)
+\item 
+bool \mbox{\hyperlink{_helpers_8cpp_a18fb654e1cfc9f9b86a5a8e684e0abf7}{compare\+By\+Prob}} (const \mbox{\hyperlink{struct_wezel_drzewa}{Wezel\+Drzewa}} \&a, const \mbox{\hyperlink{struct_wezel_drzewa}{Wezel\+Drzewa}} \&b)
+\item 
+map$<$ char, double $>$ \mbox{\hyperlink{_helpers_8cpp_a26226fc9a9c0c0f9ee84a2e540ce9983}{calculate\+\_\+probability}} (string filename)
+\item 
+\mbox{\hyperlink{struct_wezel_drzewa}{Wezel\+Drzewa}} \mbox{\hyperlink{_helpers_8cpp_a8fe8149748d345d742d921476a2a62ad}{create\+\_\+tree}} (map$<$ char, double $>$ chars\+\_\+with\+\_\+prob)
+\item 
+pair$<$ string, int $>$ \mbox{\hyperlink{_helpers_8cpp_a974b55940e661c87c51eb32935a797ec}{coded\+\_\+message}} (map$<$ char, string $>$ \mbox{\hyperlink{_helpers_8cpp_aefac69ea7c86f84362f36fe9e71b3ff5}{dictionary}}, string filename)
+\item 
+void \mbox{\hyperlink{_helpers_8cpp_a585ef7952dd026acf9b0c60836ce79bb}{output\+\_\+to\+\_\+binary}} (string huffman\+\_\+coded\+\_\+string, string filename)
+\item 
+pair$<$ map$<$ string, char $>$, int $>$ \mbox{\hyperlink{_helpers_8cpp_a9bfac0e0cef3b277060e3eb3d668e07d}{load\+\_\+dic\+\_\+file}} (string dic\+File)
+\item 
+void \mbox{\hyperlink{_helpers_8cpp_a10ea9199a98b815069582163f72e5375}{decode\+\_\+from\+\_\+binary\+\_\+to\+\_\+text}} (map$<$ string, char $>$ deco\+Dic, int number\+\_\+of\+\_\+zeros\+\_\+to\+\_\+remove, string filename)
+\item 
+void \mbox{\hyperlink{_helpers_8cpp_ab819d9e0407e64baa1d773ced0975df2}{Huffman\+Encode}} (string filename)
+\item 
+void \mbox{\hyperlink{_helpers_8cpp_ac9f9ed9753f7b3e5a73f4d2cb724fb6a}{Huffman\+Decode}} (string decoded\+\_\+filename, string dictionary\+\_\+filename)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+map$<$ char, string $>$ \mbox{\hyperlink{_helpers_8cpp_aefac69ea7c86f84362f36fe9e71b3ff5}{dictionary}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_helpers_8cpp_a478c7765ee1e38d6e04cce8232106b11}\label{_helpers_8cpp_a478c7765ee1e38d6e04cce8232106b11}} 
+\index{Helpers.cpp@{Helpers.cpp}!binary\_to\_decimal@{binary\_to\_decimal}}
+\index{binary\_to\_decimal@{binary\_to\_decimal}!Helpers.cpp@{Helpers.cpp}}
+\doxysubsubsection{\texorpdfstring{binary\_to\_decimal()}{binary\_to\_decimal()}}
+{\footnotesize\ttfamily int binary\+\_\+to\+\_\+decimal (\begin{DoxyParamCaption}\item[{string \&}]{in }\end{DoxyParamCaption})}
+
+Funkcja przyjmuje oktet, który zamienia z wartości binarnej na wartość dziesiętną.
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & 8 bitów zapisane jako string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int liczba, która zostanie zamieniona na char 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_helpers_8cpp_source_l00014}{14}} of file \mbox{\hyperlink{_helpers_8cpp_source}{Helpers.\+cpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{_helpers_8cpp_a26226fc9a9c0c0f9ee84a2e540ce9983}\label{_helpers_8cpp_a26226fc9a9c0c0f9ee84a2e540ce9983}} 
+\index{Helpers.cpp@{Helpers.cpp}!calculate\_probability@{calculate\_probability}}
+\index{calculate\_probability@{calculate\_probability}!Helpers.cpp@{Helpers.cpp}}
+\doxysubsubsection{\texorpdfstring{calculate\_probability()}{calculate\_probability()}}
+{\footnotesize\ttfamily map$<$ char, double $>$ calculate\+\_\+probability (\begin{DoxyParamCaption}\item[{string}]{filename }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_helpers_8cpp_source_l00100}{100}} of file \mbox{\hyperlink{_helpers_8cpp_source}{Helpers.\+cpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{_helpers_8cpp_a974b55940e661c87c51eb32935a797ec}\label{_helpers_8cpp_a974b55940e661c87c51eb32935a797ec}} 
+\index{Helpers.cpp@{Helpers.cpp}!coded\_message@{coded\_message}}
+\index{coded\_message@{coded\_message}!Helpers.cpp@{Helpers.cpp}}
+\doxysubsubsection{\texorpdfstring{coded\_message()}{coded\_message()}}
+{\footnotesize\ttfamily pair$<$ string, int $>$ coded\+\_\+message (\begin{DoxyParamCaption}\item[{map$<$ char, string $>$}]{dictionary,  }\item[{string}]{filename }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_helpers_8cpp_source_l00161}{161}} of file \mbox{\hyperlink{_helpers_8cpp_source}{Helpers.\+cpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{_helpers_8cpp_a18fb654e1cfc9f9b86a5a8e684e0abf7}\label{_helpers_8cpp_a18fb654e1cfc9f9b86a5a8e684e0abf7}} 
+\index{Helpers.cpp@{Helpers.cpp}!compareByProb@{compareByProb}}
+\index{compareByProb@{compareByProb}!Helpers.cpp@{Helpers.cpp}}
+\doxysubsubsection{\texorpdfstring{compareByProb()}{compareByProb()}}
+{\footnotesize\ttfamily bool compare\+By\+Prob (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_wezel_drzewa}{Wezel\+Drzewa}} \&}]{a,  }\item[{const \mbox{\hyperlink{struct_wezel_drzewa}{Wezel\+Drzewa}} \&}]{b }\end{DoxyParamCaption})}
+
+Funkcja pomagająca przy sortoaniu węzłów drzewa znajdujących się w wektorze porównująć prawdopodobieństwo.
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & pierwsz węzeł drzewa \\
+\hline
+{\em b} & drgi węzeł drzewa \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true zwraca prawdę jeżeli prawdopodobieństwo zawarte w węźłe a jest większe 
+
+false 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{struct_wezel_drzewa}{Wezel\+Drzewa}} 
+\end{DoxySeeAlso}
+
+
+Definition at line \mbox{\hyperlink{_helpers_8cpp_source_l00093}{93}} of file \mbox{\hyperlink{_helpers_8cpp_source}{Helpers.\+cpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{_helpers_8cpp_a8fe8149748d345d742d921476a2a62ad}\label{_helpers_8cpp_a8fe8149748d345d742d921476a2a62ad}} 
+\index{Helpers.cpp@{Helpers.cpp}!create\_tree@{create\_tree}}
+\index{create\_tree@{create\_tree}!Helpers.cpp@{Helpers.cpp}}
+\doxysubsubsection{\texorpdfstring{create\_tree()}{create\_tree()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_wezel_drzewa}{Wezel\+Drzewa}} create\+\_\+tree (\begin{DoxyParamCaption}\item[{map$<$ char, double $>$}]{chars\+\_\+with\+\_\+prob }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_helpers_8cpp_source_l00122}{122}} of file \mbox{\hyperlink{_helpers_8cpp_source}{Helpers.\+cpp}}.
+
+Here is the call graph for this function\+:
+% FIG 5
+Here is the caller graph for this function\+:
+% FIG 6
+\mbox{\Hypertarget{_helpers_8cpp_a9bbb8f910d2953dbd15631058512cbef}\label{_helpers_8cpp_a9bbb8f910d2953dbd15631058512cbef}} 
+\index{Helpers.cpp@{Helpers.cpp}!createDictionary@{createDictionary}}
+\index{createDictionary@{createDictionary}!Helpers.cpp@{Helpers.cpp}}
+\doxysubsubsection{\texorpdfstring{createDictionary()}{createDictionary()}}
+{\footnotesize\ttfamily void create\+Dictionary (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_wezel_drzewa}{Wezel\+Drzewa}} $\ast$}]{p,  }\item[{map$<$ char, string $>$ \&}]{dictionary,  }\item[{string}]{prevstring }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_helpers_8cpp_source_l00053}{53}} of file \mbox{\hyperlink{_helpers_8cpp_source}{Helpers.\+cpp}}.
+
+Here is the call graph for this function\+:
+% FIG 7
+Here is the caller graph for this function\+:
+% FIG 8
+\mbox{\Hypertarget{_helpers_8cpp_a6df5ebbafa5429748f30924fb6120df1}\label{_helpers_8cpp_a6df5ebbafa5429748f30924fb6120df1}} 
+\index{Helpers.cpp@{Helpers.cpp}!decimal\_to\_binary@{decimal\_to\_binary}}
+\index{decimal\_to\_binary@{decimal\_to\_binary}!Helpers.cpp@{Helpers.cpp}}
+\doxysubsubsection{\texorpdfstring{decimal\_to\_binary()}{decimal\_to\_binary()}}
+{\footnotesize\ttfamily string decimal\+\_\+to\+\_\+binary (\begin{DoxyParamCaption}\item[{int}]{in }\end{DoxyParamCaption})}
+
+Funkcja zamienia liczbę z zapisu dziesiętnego na binarny.
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & liczba do zamiany \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string zwraca liczbę zapisaną binarnie 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_helpers_8cpp_source_l00022}{22}} of file \mbox{\hyperlink{_helpers_8cpp_source}{Helpers.\+cpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 9
+\mbox{\Hypertarget{_helpers_8cpp_a10ea9199a98b815069582163f72e5375}\label{_helpers_8cpp_a10ea9199a98b815069582163f72e5375}} 
+\index{Helpers.cpp@{Helpers.cpp}!decode\_from\_binary\_to\_text@{decode\_from\_binary\_to\_text}}
+\index{decode\_from\_binary\_to\_text@{decode\_from\_binary\_to\_text}!Helpers.cpp@{Helpers.cpp}}
+\doxysubsubsection{\texorpdfstring{decode\_from\_binary\_to\_text()}{decode\_from\_binary\_to\_text()}}
+{\footnotesize\ttfamily void decode\+\_\+from\+\_\+binary\+\_\+to\+\_\+text (\begin{DoxyParamCaption}\item[{map$<$ string, char $>$}]{deco\+Dic,  }\item[{int}]{number\+\_\+of\+\_\+zeros\+\_\+to\+\_\+remove,  }\item[{string}]{filename }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_helpers_8cpp_source_l00229}{229}} of file \mbox{\hyperlink{_helpers_8cpp_source}{Helpers.\+cpp}}.
+
+Here is the call graph for this function\+:
+% FIG 10
+Here is the caller graph for this function\+:
+% FIG 11
+\mbox{\Hypertarget{_helpers_8cpp_ac9f9ed9753f7b3e5a73f4d2cb724fb6a}\label{_helpers_8cpp_ac9f9ed9753f7b3e5a73f4d2cb724fb6a}} 
+\index{Helpers.cpp@{Helpers.cpp}!HuffmanDecode@{HuffmanDecode}}
+\index{HuffmanDecode@{HuffmanDecode}!Helpers.cpp@{Helpers.cpp}}
+\doxysubsubsection{\texorpdfstring{HuffmanDecode()}{HuffmanDecode()}}
+{\footnotesize\ttfamily void Huffman\+Decode (\begin{DoxyParamCaption}\item[{string}]{decoded\+\_\+filename,  }\item[{string}]{dictionary\+\_\+filename }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_helpers_8cpp_source_l00278}{278}} of file \mbox{\hyperlink{_helpers_8cpp_source}{Helpers.\+cpp}}.
+
+Here is the call graph for this function\+:
+% FIG 12
+Here is the caller graph for this function\+:
+% FIG 13
+\mbox{\Hypertarget{_helpers_8cpp_ab819d9e0407e64baa1d773ced0975df2}\label{_helpers_8cpp_ab819d9e0407e64baa1d773ced0975df2}} 
+\index{Helpers.cpp@{Helpers.cpp}!HuffmanEncode@{HuffmanEncode}}
+\index{HuffmanEncode@{HuffmanEncode}!Helpers.cpp@{Helpers.cpp}}
+\doxysubsubsection{\texorpdfstring{HuffmanEncode()}{HuffmanEncode()}}
+{\footnotesize\ttfamily void Huffman\+Encode (\begin{DoxyParamCaption}\item[{string}]{filename }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_helpers_8cpp_source_l00265}{265}} of file \mbox{\hyperlink{_helpers_8cpp_source}{Helpers.\+cpp}}.
+
+Here is the call graph for this function\+:
+% FIG 14
+Here is the caller graph for this function\+:
+% FIG 15
+\mbox{\Hypertarget{_helpers_8cpp_a9bfac0e0cef3b277060e3eb3d668e07d}\label{_helpers_8cpp_a9bfac0e0cef3b277060e3eb3d668e07d}} 
+\index{Helpers.cpp@{Helpers.cpp}!load\_dic\_file@{load\_dic\_file}}
+\index{load\_dic\_file@{load\_dic\_file}!Helpers.cpp@{Helpers.cpp}}
+\doxysubsubsection{\texorpdfstring{load\_dic\_file()}{load\_dic\_file()}}
+{\footnotesize\ttfamily pair$<$ map$<$ string, char $>$, int $>$ load\+\_\+dic\+\_\+file (\begin{DoxyParamCaption}\item[{string}]{dic\+File }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_helpers_8cpp_source_l00209}{209}} of file \mbox{\hyperlink{_helpers_8cpp_source}{Helpers.\+cpp}}.
+
+Here is the call graph for this function\+:
+% FIG 16
+Here is the caller graph for this function\+:
+% FIG 17
+\mbox{\Hypertarget{_helpers_8cpp_a60b7501d74b0f191a79d1c15d35f4aba}\label{_helpers_8cpp_a60b7501d74b0f191a79d1c15d35f4aba}} 
+\index{Helpers.cpp@{Helpers.cpp}!output\_dictionary@{output\_dictionary}}
+\index{output\_dictionary@{output\_dictionary}!Helpers.cpp@{Helpers.cpp}}
+\doxysubsubsection{\texorpdfstring{output\_dictionary()}{output\_dictionary()}}
+{\footnotesize\ttfamily template$<$typename K , typename V $>$ \\
+void output\+\_\+dictionary (\begin{DoxyParamCaption}\item[{std\+::map$<$ K, V $>$ const \&}]{m,  }\item[{string}]{filename,  }\item[{int}]{zeros\+\_\+added }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_helpers_8cpp_source_l00040}{40}} of file \mbox{\hyperlink{_helpers_8cpp_source}{Helpers.\+cpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 18
+\mbox{\Hypertarget{_helpers_8cpp_a585ef7952dd026acf9b0c60836ce79bb}\label{_helpers_8cpp_a585ef7952dd026acf9b0c60836ce79bb}} 
+\index{Helpers.cpp@{Helpers.cpp}!output\_to\_binary@{output\_to\_binary}}
+\index{output\_to\_binary@{output\_to\_binary}!Helpers.cpp@{Helpers.cpp}}
+\doxysubsubsection{\texorpdfstring{output\_to\_binary()}{output\_to\_binary()}}
+{\footnotesize\ttfamily void output\+\_\+to\+\_\+binary (\begin{DoxyParamCaption}\item[{string}]{huffman\+\_\+coded\+\_\+string,  }\item[{string}]{filename }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_helpers_8cpp_source_l00187}{187}} of file \mbox{\hyperlink{_helpers_8cpp_source}{Helpers.\+cpp}}.
+
+Here is the call graph for this function\+:
+% FIG 19
+Here is the caller graph for this function\+:
+% FIG 20
+\mbox{\Hypertarget{_helpers_8cpp_a46664bdcd79573e1371942d595a173fb}\label{_helpers_8cpp_a46664bdcd79573e1371942d595a173fb}} 
+\index{Helpers.cpp@{Helpers.cpp}!splitString@{splitString}}
+\index{splitString@{splitString}!Helpers.cpp@{Helpers.cpp}}
+\doxysubsubsection{\texorpdfstring{splitString()}{splitString()}}
+{\footnotesize\ttfamily pair$<$ string, char $>$ split\+String (\begin{DoxyParamCaption}\item[{string}]{napis }\end{DoxyParamCaption})}
+
+Funkcja dzieli podany napis na dwie części po napotkaniu znaku spacji.
+
+
+\begin{DoxyParams}{Parameters}
+{\em napis} & wejściowy string zawierający dwie wartości oddzielone spacją \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pair$<$string, char$>$ zwraca dwie wartości\+: kod huffmana, znak ASCII zapisany jako int 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_helpers_8cpp_source_l00066}{66}} of file \mbox{\hyperlink{_helpers_8cpp_source}{Helpers.\+cpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 21
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{_helpers_8cpp_aefac69ea7c86f84362f36fe9e71b3ff5}\label{_helpers_8cpp_aefac69ea7c86f84362f36fe9e71b3ff5}} 
+\index{Helpers.cpp@{Helpers.cpp}!dictionary@{dictionary}}
+\index{dictionary@{dictionary}!Helpers.cpp@{Helpers.cpp}}
+\doxysubsubsection{\texorpdfstring{dictionary}{dictionary}}
+{\footnotesize\ttfamily map$<$char, string$>$ dictionary}
+
+
+
+Definition at line \mbox{\hyperlink{_helpers_8cpp_source_l00013}{13}} of file \mbox{\hyperlink{_helpers_8cpp_source}{Helpers.\+cpp}}.
+

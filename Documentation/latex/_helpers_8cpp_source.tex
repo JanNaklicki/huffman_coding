@@ -1,0 +1,336 @@
+\hypertarget{_helpers_8cpp_source}{}\doxysection{Helpers.\+cpp}
+\mbox{\hyperlink{_helpers_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_helpers_8h}{Helpers.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00002}00002 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00003}00003 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00004}00004 \textcolor{preprocessor}{\#include <map>}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00005}00005 \textcolor{preprocessor}{\#include <utility>}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00006}00006 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00007}00007 \textcolor{preprocessor}{\#include <bitset>}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00008}00008 \textcolor{preprocessor}{\#include <cstdlib>}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00009}00009 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00010}00010 \textcolor{preprocessor}{\#include <algorithm>}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00011}00011 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00012}00012 }
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00013}\mbox{\hyperlink{_helpers_8cpp_aefac69ea7c86f84362f36fe9e71b3ff5}{00013}} map<char, string> \mbox{\hyperlink{_helpers_8cpp_aefac69ea7c86f84362f36fe9e71b3ff5}{dictionary}};}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00015}00015 }
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00016}\mbox{\hyperlink{_helpers_8cpp_a339ac1d0735c8d445c0b1f2e0c54e43a}{00016}} \textcolor{keywordtype}{int} \mbox{\hyperlink{_helpers_8cpp_a339ac1d0735c8d445c0b1f2e0c54e43a}{validate\_input\_arguments}}(\textcolor{keywordtype}{int} argc, vector<string> \&arg) \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00017}00017     \textcolor{keywordflow}{if} (argc == 1 || arg[1] == \textcolor{stringliteral}{"{}-\/h"{}} || arg[1] == \textcolor{stringliteral}{"{}-\/-\/help"{}}) \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00018}00018         cout << \textcolor{stringliteral}{"{}User manual\(\backslash\)n"{}}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00019}00019                 \textcolor{stringliteral}{"{}Usage:\(\backslash\)n"{}}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00020}00020                 \textcolor{stringliteral}{"{}   -\/i(-\/-\/input) input\_filename \(\backslash\)n"{}}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00021}00021                 \textcolor{stringliteral}{"{}   -\/o(-\/-\/output) output\_filename\(\backslash\)n"{}}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00022}00022                 \textcolor{stringliteral}{"{}   -\/s(-\/-\/slownik) slownik\_filename \(\backslash\)n"{}}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00023}00023                 \textcolor{stringliteral}{"{}   -\/t(-\/-\/tryb) k -\/ kompresja, d -\/ dekompresja \(\backslash\)n"{}}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00024}00024                 \textcolor{stringliteral}{"{}All four arguments are necessary to run program. For compression output file type should be .bin and for decompresion input should be .bin\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00025}00025         \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00026}00026     \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00027}00027     \textcolor{keywordflow}{if} (argc > 1 \&\& argc != 9) \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00028}00028         cout << argc;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00029}00029         cout << \textcolor{stringliteral}{"{}The number of arguments is not equal 4. Type '-\/h' and check manual\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00030}00030         \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00031}00031     \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00032}00032     \textcolor{keywordflow}{if} (arg[1] == arg[3]) \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00033}00033         cout << \textcolor{stringliteral}{"{}Can't use the same flag two times. Type '-\/h' and check manual\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00034}00034         \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00035}00035     \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00036}00036     \textcolor{keywordflow}{if} (arg[2] == arg[4]) \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00037}00037         cout << \textcolor{stringliteral}{"{}Can't use the same file for input and output. Type '-\/h' and check manual\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00038}00038         \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00039}00039     \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00040}00040     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00041}00041 \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00043}\mbox{\hyperlink{_helpers_8cpp_a92b36d9b93772c4f567d7f4747703a1e}{00043}} \textcolor{keywordtype}{void} \mbox{\hyperlink{_helpers_8cpp_a92b36d9b93772c4f567d7f4747703a1e}{setPathByFlag}}(\textcolor{keywordtype}{string}\& flag, \textcolor{keywordtype}{string}\& path, \textcolor{keywordtype}{string}\& input\_path, \textcolor{keywordtype}{string}\& output\_path, \textcolor{keywordtype}{string}\& dic\_path, \textcolor{keywordtype}{string}\& mode) \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00044}00044     \textcolor{keywordflow}{if} (flag == \textcolor{stringliteral}{"{}-\/i"{}} || flag == \textcolor{stringliteral}{"{}-\/-\/input"{}}) \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00045}00045         input\_path = path;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00046}00046     \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00047}00047     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (flag == \textcolor{stringliteral}{"{}-\/o"{}} || flag == \textcolor{stringliteral}{"{}-\/-\/output"{}}) \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00048}00048         output\_path = path;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00049}00049     \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00050}00050     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (flag == \textcolor{stringliteral}{"{}-\/s"{}} || flag == \textcolor{stringliteral}{"{}-\/-\/slownik"{}}) \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00051}00051         dic\_path = path;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00052}00052     \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00053}00053     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (flag == \textcolor{stringliteral}{"{}-\/t"{}} || flag == \textcolor{stringliteral}{"{}-\/-\/tryb"{}}) \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00054}00054         mode = path;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00055}00055     \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00056}00056     \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00057}00057         cout << \textcolor{stringliteral}{"{}Unknown flag. Type '-\/h' and check manual\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00058}00058     \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00059}00059 \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00060}00060 }
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00061}00061 }
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00062}\mbox{\hyperlink{_helpers_8cpp_a478c7765ee1e38d6e04cce8232106b11}{00062}} \textcolor{keywordtype}{int} \mbox{\hyperlink{_helpers_8cpp_a478c7765ee1e38d6e04cce8232106b11}{binary\_to\_decimal}}(\textcolor{keywordtype}{string}\& in)}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00063}00063 \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00064}00064     \textcolor{keywordtype}{int} result = 0;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00065}00065     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < (int)in.size(); i++)}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00066}00066         result = result * 2 + in[i] -\/ \textcolor{charliteral}{'0'};}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00067}00067     \textcolor{keywordflow}{return} result;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00068}00068 \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00069}00069 }
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00070}\mbox{\hyperlink{_helpers_8cpp_a6df5ebbafa5429748f30924fb6120df1}{00070}} \textcolor{keywordtype}{string} \mbox{\hyperlink{_helpers_8cpp_a6df5ebbafa5429748f30924fb6120df1}{decimal\_to\_binary}}(\textcolor{keywordtype}{int} in)}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00071}00071 \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00072}00072     \textcolor{keywordtype}{string} temp = \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00073}00073     \textcolor{keywordtype}{string} result = \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00074}00074     \textcolor{keywordflow}{while} (in)}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00075}00075     \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00076}00076         temp += (\textcolor{charliteral}{'0'} + in \% 2);}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00077}00077         in /= 2;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00078}00078     \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00079}00079     result.append(8 -\/ temp.size(), \textcolor{charliteral}{'0'});}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00080}00080     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = temp.size() -\/ 1; i >= 0; i-\/-\/)}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00081}00081     \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00082}00082         result += temp[i];}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00083}00083     \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00084}00084     \textcolor{keywordflow}{return} result;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00085}00085 \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00086}00086 }
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00087}\mbox{\hyperlink{_helpers_8cpp_a8828f2bbb96fe04bbd16a6d22990828e}{00087}} pair<string, char> \mbox{\hyperlink{_helpers_8cpp_a8828f2bbb96fe04bbd16a6d22990828e}{split\_string}}(\textcolor{keywordtype}{string} napis)}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00088}00088 \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00089}00089     pair<string, char> wynik;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00090}00090     \textcolor{keywordtype}{string} znak = \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00091}00091     \textcolor{keywordtype}{string} kod = \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00092}00092     \textcolor{keywordtype}{bool} space = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00093}00093     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < (int)napis.length(); i++)}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00094}00094     \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00095}00095         \textcolor{keywordflow}{if} (napis[i] == \textcolor{charliteral}{' '})}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00096}00096         \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00097}00097             space = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00098}00098             \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00099}00099         \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00100}00100         \textcolor{keywordflow}{if} (!space)}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00101}00101         \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00102}00102             znak += napis[i];}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00103}00103         \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00104}00104         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00105}00105         \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00106}00106             kod += napis[i];}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00107}00107         \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00108}00108     \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00109}00109     wynik.second = char(stoi(znak));}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00110}00110     wynik.first = kod;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00111}00111     \textcolor{keywordflow}{return} wynik;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00112}00112 \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00113}00113 }
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00114}\mbox{\hyperlink{_helpers_8cpp_a25086c4548cc124280f5bd1dbe1d06a6}{00114}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{_helpers_8cpp_a25086c4548cc124280f5bd1dbe1d06a6}{compare\_by\_prob}}(\textcolor{keyword}{const} \mbox{\hyperlink{struct_wezel_drzewa}{WezelDrzewa}}\& a, \textcolor{keyword}{const} \mbox{\hyperlink{struct_wezel_drzewa}{WezelDrzewa}}\& b)}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00115}00115 \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00116}00116     \textcolor{keywordflow}{return} a.\mbox{\hyperlink{struct_wezel_drzewa_acc5adddc1302169df530458b9c3c05d1}{probability}} > b.\mbox{\hyperlink{struct_wezel_drzewa_acc5adddc1302169df530458b9c3c05d1}{probability}};}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00117}00117 \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00118}00118 }
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00119}\mbox{\hyperlink{_helpers_8cpp_a3881683c5eb4d532d6b2e418f34219d5}{00119}} map<char, double> \mbox{\hyperlink{_helpers_8cpp_a3881683c5eb4d532d6b2e418f34219d5}{calculate\_probability}}(\textcolor{keywordtype}{string} inputname)}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00120}00120 \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00121}00121     \textcolor{keywordtype}{int} number\_of\_characters = 0;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00122}00122     \textcolor{keywordtype}{string} line;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00123}00123     map<char, double> dane;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00124}00124     ifstream infile(inputname);}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00125}00125     \textcolor{keywordflow}{while} (getline(infile, line))}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00126}00126     \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00127}00127         number\_of\_characters += line.length();}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00128}00128         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < (int)line.length(); i++)}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00129}00129         \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00130}00130             dane[line[i]]++;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00131}00131         \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00132}00132         dane[\textcolor{charliteral}{'\(\backslash\)n'}]++;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00133}00133     \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00134}00134     infile.close();}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00135}00135     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& it : dane)}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00136}00136     \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00137}00137         dane[it.first] = it.second / number\_of\_characters;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00138}00138     \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00139}00139     \textcolor{keywordflow}{return} dane;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00140}00140 \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00141}00141 }
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00142}\mbox{\hyperlink{_helpers_8cpp_ab1f573748ea31eaef6af8c4409ad3e2f}{00142}} \textcolor{keywordtype}{void} \mbox{\hyperlink{_helpers_8cpp_ab1f573748ea31eaef6af8c4409ad3e2f}{create\_dictionary}}(\mbox{\hyperlink{struct_wezel_drzewa}{WezelDrzewa}}* tree, map<char, string>\& \mbox{\hyperlink{_helpers_8cpp_aefac69ea7c86f84362f36fe9e71b3ff5}{dictionary}}, \textcolor{keywordtype}{string} prevstring)}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00143}00143 \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00144}00144     \textcolor{keywordflow}{if} (tree)}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00145}00145     \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00146}00146         \textcolor{keywordflow}{if} (\textcolor{keywordtype}{int}(tree-\/>\mbox{\hyperlink{struct_wezel_drzewa_a60a79e575d93ba9f64a4ce297a366624}{ch}}[0]) != 0)}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00147}00147         \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00148}00148             \mbox{\hyperlink{_helpers_8cpp_aefac69ea7c86f84362f36fe9e71b3ff5}{dictionary}}.insert(std::pair<char, string>(\textcolor{keywordtype}{char}(tree-\/>\mbox{\hyperlink{struct_wezel_drzewa_a60a79e575d93ba9f64a4ce297a366624}{ch}}[0]), prevstring));}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00149}00149         \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00150}00150         \mbox{\hyperlink{_helpers_8cpp_ab1f573748ea31eaef6af8c4409ad3e2f}{create\_dictionary}}(tree-\/>\mbox{\hyperlink{struct_wezel_drzewa_a335141c8746fc1e61275d12dd7f1945f}{left}}, \mbox{\hyperlink{_helpers_8cpp_aefac69ea7c86f84362f36fe9e71b3ff5}{dictionary}}, prevstring + \textcolor{stringliteral}{"{}0"{}});}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00151}00151         \mbox{\hyperlink{_helpers_8cpp_ab1f573748ea31eaef6af8c4409ad3e2f}{create\_dictionary}}(tree-\/>\mbox{\hyperlink{struct_wezel_drzewa_ac431798e3c0175660b7780e921a0dd52}{right}}, \mbox{\hyperlink{_helpers_8cpp_aefac69ea7c86f84362f36fe9e71b3ff5}{dictionary}}, prevstring + \textcolor{stringliteral}{"{}1"{}});}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00152}00152     \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00153}00153 \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00154}00154 }
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00155}00155 \textcolor{keyword}{template} <\textcolor{keyword}{typename} K, \textcolor{keyword}{typename} V>}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00156}\mbox{\hyperlink{_helpers_8cpp_a61bb5ef5a32b19f32711c37692b0da27}{00156}} \textcolor{keywordtype}{void} \mbox{\hyperlink{_helpers_8cpp_a61bb5ef5a32b19f32711c37692b0da27}{output\_dictionary}}(map<K, V> \textcolor{keyword}{const}\& m, \textcolor{keywordtype}{string} dicfile, \textcolor{keywordtype}{int} zeros\_added)}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00157}00157 \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00158}00158     ofstream plik;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00159}00159     plik.open(dicfile);}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00160}00160     plik << zeros\_added << \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00161}00161     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} \textcolor{keyword}{const}\& pair : m)}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00162}00162     \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00163}00163         plik << int(pair.first) << \textcolor{stringliteral}{"{} "{}} << pair.second << \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00164}00164     \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00165}00165     plik.close();}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00166}00166 \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00167}00167 }
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00168}\mbox{\hyperlink{_helpers_8cpp_a8fe8149748d345d742d921476a2a62ad}{00168}} \mbox{\hyperlink{struct_wezel_drzewa}{WezelDrzewa}} \mbox{\hyperlink{_helpers_8cpp_a8fe8149748d345d742d921476a2a62ad}{create\_tree}}(map<char, double> chars\_with\_prob)}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00169}00169 \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00170}00170     vector<WezelDrzewa> elementyDoUtworzeniaDrzewa;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00171}00171     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} \textcolor{keyword}{const}\& pair : chars\_with\_prob)}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00172}00172     \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00173}00173         \mbox{\hyperlink{struct_wezel_drzewa}{WezelDrzewa}} x;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00174}00174         x.\mbox{\hyperlink{struct_wezel_drzewa_a335141c8746fc1e61275d12dd7f1945f}{left}} = NULL;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00175}00175         x.\mbox{\hyperlink{struct_wezel_drzewa_ac431798e3c0175660b7780e921a0dd52}{right}} = NULL;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00176}00176         x.\mbox{\hyperlink{struct_wezel_drzewa_a60a79e575d93ba9f64a4ce297a366624}{ch}} = pair.first;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00177}00177         x.\mbox{\hyperlink{struct_wezel_drzewa_acc5adddc1302169df530458b9c3c05d1}{probability}} = pair.second;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00178}00178         elementyDoUtworzeniaDrzewa.push\_back(x);}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00179}00179     \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00180}00180     \textcolor{comment}{//Create tree from nodes}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00181}00181     \textcolor{keywordflow}{while} (elementyDoUtworzeniaDrzewa.size() > 1)}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00182}00182     \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00183}00183         \mbox{\hyperlink{struct_wezel_drzewa}{WezelDrzewa}}* node1 = \textcolor{keyword}{new} \mbox{\hyperlink{struct_wezel_drzewa}{WezelDrzewa}}(elementyDoUtworzeniaDrzewa.back());}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00184}00184         elementyDoUtworzeniaDrzewa.pop\_back();}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00185}00185         \mbox{\hyperlink{struct_wezel_drzewa}{WezelDrzewa}}* node2 = \textcolor{keyword}{new} \mbox{\hyperlink{struct_wezel_drzewa}{WezelDrzewa}}(elementyDoUtworzeniaDrzewa.back());}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00186}00186         elementyDoUtworzeniaDrzewa.pop\_back();}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00187}00187 }
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00188}00188         \mbox{\hyperlink{struct_wezel_drzewa}{WezelDrzewa}} x;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00189}00189         x.\mbox{\hyperlink{struct_wezel_drzewa_a60a79e575d93ba9f64a4ce297a366624}{ch}} = \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00190}00190         x.\mbox{\hyperlink{struct_wezel_drzewa_acc5adddc1302169df530458b9c3c05d1}{probability}} = node1-\/>\mbox{\hyperlink{struct_wezel_drzewa_acc5adddc1302169df530458b9c3c05d1}{probability}} + node2-\/>\mbox{\hyperlink{struct_wezel_drzewa_acc5adddc1302169df530458b9c3c05d1}{probability}};}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00191}00191         \textcolor{keywordflow}{if} (node1-\/>\mbox{\hyperlink{struct_wezel_drzewa_acc5adddc1302169df530458b9c3c05d1}{probability}} < node2-\/>\mbox{\hyperlink{struct_wezel_drzewa_acc5adddc1302169df530458b9c3c05d1}{probability}})}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00192}00192         \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00193}00193             x.\mbox{\hyperlink{struct_wezel_drzewa_a335141c8746fc1e61275d12dd7f1945f}{left}} = node1;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00194}00194             x.\mbox{\hyperlink{struct_wezel_drzewa_ac431798e3c0175660b7780e921a0dd52}{right}} = node2;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00195}00195         \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00196}00196         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00197}00197         \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00198}00198             x.\mbox{\hyperlink{struct_wezel_drzewa_a335141c8746fc1e61275d12dd7f1945f}{left}} = node2;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00199}00199             x.\mbox{\hyperlink{struct_wezel_drzewa_ac431798e3c0175660b7780e921a0dd52}{right}} = node1;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00200}00200         \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00201}00201         elementyDoUtworzeniaDrzewa.push\_back(x);}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00202}00202         sort(elementyDoUtworzeniaDrzewa.begin(), elementyDoUtworzeniaDrzewa.end(), \mbox{\hyperlink{_helpers_8cpp_a25086c4548cc124280f5bd1dbe1d06a6}{compare\_by\_prob}});}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00203}00203     \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00204}00204     \textcolor{keywordflow}{return} elementyDoUtworzeniaDrzewa.back();}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00205}00205 \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00206}00206 }
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00207}\mbox{\hyperlink{_helpers_8cpp_affe3d4979f442db2f02af01db11fe940}{00207}} pair<string, int> \mbox{\hyperlink{_helpers_8cpp_affe3d4979f442db2f02af01db11fe940}{coded\_message}}(map<char, string> \mbox{\hyperlink{_helpers_8cpp_aefac69ea7c86f84362f36fe9e71b3ff5}{dictionary}}, \textcolor{keywordtype}{string} inputfile)}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00208}00208 \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00209}00209     \textcolor{keywordtype}{string} huffman\_coded\_string = \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00210}00210     ifstream file(inputfile);}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00211}00211     \textcolor{keywordtype}{string} line;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00212}00212     \textcolor{keywordflow}{while} (getline(file, line))}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00213}00213     \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00214}00214         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < (int)line.length(); i++)}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00215}00215         \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00216}00216             huffman\_coded\_string += \mbox{\hyperlink{_helpers_8cpp_aefac69ea7c86f84362f36fe9e71b3ff5}{dictionary}}[line[i]];}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00217}00217         \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00218}00218         huffman\_coded\_string += \mbox{\hyperlink{_helpers_8cpp_aefac69ea7c86f84362f36fe9e71b3ff5}{dictionary}}[\textcolor{charliteral}{'\(\backslash\)n'}];}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00219}00219     \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00220}00220     file.close();}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00221}00221 }
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00222}00222     \textcolor{keywordtype}{int} number\_added\_zeros = 8 -\/ huffman\_coded\_string.length() \% 8;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00223}00223     \textcolor{keywordflow}{if} (number\_added\_zeros != 0)}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00224}00224     \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00225}00225         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < number\_added\_zeros; i++)}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00226}00226         \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00227}00227             huffman\_coded\_string += \textcolor{stringliteral}{"{}0"{}};}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00228}00228         \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00229}00229     \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00230}00230     pair<string, int> result(huffman\_coded\_string, number\_added\_zeros);}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00231}00231     \textcolor{keywordflow}{return} result;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00232}00232 \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00233}00233 }
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00234}\mbox{\hyperlink{_helpers_8cpp_af91b9270b06c99a9b6ed50e179e41bd7}{00234}} \textcolor{keywordtype}{void} \mbox{\hyperlink{_helpers_8cpp_af91b9270b06c99a9b6ed50e179e41bd7}{output\_to\_binary}}(\textcolor{keywordtype}{string} huffman\_coded\_string, \textcolor{keywordtype}{string} outputfile)}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00235}00235 \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00236}00236     \textcolor{keywordtype}{string} in = \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00237}00237     \textcolor{keywordtype}{string} part\_of\_string = \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00238}00238     ofstream compressed(outputfile, ios::binary);}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00239}00239     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 1; i <= (int)huffman\_coded\_string.length(); i++)}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00240}00240     \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00241}00241         \textcolor{keywordflow}{if} (part\_of\_string.length() == 7)}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00242}00242         \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00243}00243             part\_of\_string += huffman\_coded\_string[i -\/ 1];}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00244}00244             in += (char)\mbox{\hyperlink{_helpers_8cpp_a478c7765ee1e38d6e04cce8232106b11}{binary\_to\_decimal}}(part\_of\_string);}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00245}00245             part\_of\_string = \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00246}00246         \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00247}00247         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00248}00248         \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00249}00249             part\_of\_string += huffman\_coded\_string[i -\/ 1];}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00250}00250         \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00251}00251     \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00252}00252     compressed.write(in.c\_str(), in.size());}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00253}00253     compressed.close();}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00254}00254 \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00255}00255 }
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00256}00256 }
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00257}00257 \textcolor{comment}{// Decoding}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00258}\mbox{\hyperlink{_helpers_8cpp_a9bfac0e0cef3b277060e3eb3d668e07d}{00258}} pair<map<string, char>, \textcolor{keywordtype}{int}> \mbox{\hyperlink{_helpers_8cpp_a9bfac0e0cef3b277060e3eb3d668e07d}{load\_dic\_file}}(\textcolor{keywordtype}{string} dicFile)}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00259}00259 \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00260}00260     map<string, char> decoDic;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00261}00261     \textcolor{keywordtype}{string} line, number = \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00262}00262 }
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00263}00263     ifstream dict(dicFile);}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00264}00264     getline(dict, line);}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00265}00265     number.push\_back(line[0]);}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00266}00266 }
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00267}00267     \textcolor{keywordtype}{int} number\_of\_zeros\_to\_remove = stoi(number);}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00268}00268 }
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00269}00269     \textcolor{keywordflow}{while} (getline(dict, line))}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00270}00270     \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00271}00271         decoDic.insert(pair<string, char>(\mbox{\hyperlink{_helpers_8cpp_a8828f2bbb96fe04bbd16a6d22990828e}{split\_string}}(line).first, \mbox{\hyperlink{_helpers_8cpp_a8828f2bbb96fe04bbd16a6d22990828e}{split\_string}}(line).second));}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00272}00272     \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00273}00273     dict.close();}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00274}00274     pair<map<string, char>, \textcolor{keywordtype}{int}> res(decoDic, number\_of\_zeros\_to\_remove);}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00275}00275     \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00276}00276 \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00277}00277 }
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00278}\mbox{\hyperlink{_helpers_8cpp_ac5cdf0dfe8022023fdf6c94691604f6e}{00278}} \textcolor{keywordtype}{void} \mbox{\hyperlink{_helpers_8cpp_ac5cdf0dfe8022023fdf6c94691604f6e}{decode\_from\_binary\_to\_text}}(map<string, char> decoDic, \textcolor{keywordtype}{int} number\_of\_zeros\_to\_remove, \textcolor{keywordtype}{string} inputname, \textcolor{keywordtype}{string} outputname)}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00279}00279 \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00280}00280 }
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00281}00281     ifstream codedmessage(inputname, ifstream::in | ios::binary);}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00282}00282     \textcolor{keywordtype}{string} decodedmessage = \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00283}00283     vector<unsigned char> text;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00284}00284     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} textseg;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00285}00285     codedmessage.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&textseg), 1);}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00286}00286     \textcolor{keywordflow}{while} (!codedmessage.eof())}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00287}00287     \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00288}00288         text.push\_back(textseg);}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00289}00289         codedmessage.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&textseg), 1);}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00290}00290     \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00291}00291     codedmessage.close();}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00292}00292     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < (int)text.size(); i++)}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00293}00293     \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00294}00294         decodedmessage += \mbox{\hyperlink{_helpers_8cpp_a6df5ebbafa5429748f30924fb6120df1}{decimal\_to\_binary}}(text[i]);}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00295}00295     \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00296}00296 }
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00297}00297     ofstream decoded\_message\_file(outputname);}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00298}00298     \textcolor{keywordtype}{string} ciag = \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00299}00299     map<string, char>::iterator it;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00300}00300     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < (int)decodedmessage.length() -\/ number\_of\_zeros\_to\_remove; i++)}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00301}00301     \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00302}00302         ciag += decodedmessage[i];}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00303}00303         it = decoDic.find(ciag);}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00304}00304         \textcolor{keywordflow}{if} (it != decoDic.end())}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00305}00305         \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00306}00306             decoded\_message\_file << it-\/>second;}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00307}00307             ciag = \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00308}00308         \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00309}00309     \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00310}00310     decoded\_message\_file.close();}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00311}00311    }
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00312}00312 \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00313}00313 }
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00314}\mbox{\hyperlink{_helpers_8cpp_a4d99ba727e5864410abe0da93f9883a1}{00314}} \textcolor{keywordtype}{void} \mbox{\hyperlink{_helpers_8cpp_a4d99ba727e5864410abe0da93f9883a1}{HuffmanEncode}}(\textcolor{keywordtype}{string} inputname, \textcolor{keywordtype}{string} outputname, \textcolor{keywordtype}{string} dicfile)}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00315}00315 \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00316}00316     map<char, double> chars\_with\_prob = \mbox{\hyperlink{_helpers_8cpp_a3881683c5eb4d532d6b2e418f34219d5}{calculate\_probability}}(inputname);}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00317}00317     \mbox{\hyperlink{struct_wezel_drzewa}{WezelDrzewa}}* prepared\_tree = \textcolor{keyword}{new} \mbox{\hyperlink{struct_wezel_drzewa}{WezelDrzewa}}(\mbox{\hyperlink{_helpers_8cpp_a8fe8149748d345d742d921476a2a62ad}{create\_tree}}(chars\_with\_prob));}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00318}00318     map<char, string> \mbox{\hyperlink{_helpers_8cpp_aefac69ea7c86f84362f36fe9e71b3ff5}{dictionary}};}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00319}00319 }
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00320}00320     \mbox{\hyperlink{_helpers_8cpp_ab1f573748ea31eaef6af8c4409ad3e2f}{create\_dictionary}}(prepared\_tree, \mbox{\hyperlink{_helpers_8cpp_aefac69ea7c86f84362f36fe9e71b3ff5}{dictionary}}, \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00321}00321     pair<string, int> data\_for\_output = \mbox{\hyperlink{_helpers_8cpp_affe3d4979f442db2f02af01db11fe940}{coded\_message}}(\mbox{\hyperlink{_helpers_8cpp_aefac69ea7c86f84362f36fe9e71b3ff5}{dictionary}}, inputname);}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00322}00322 }
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00323}00323     \mbox{\hyperlink{_helpers_8cpp_af91b9270b06c99a9b6ed50e179e41bd7}{output\_to\_binary}}(data\_for\_output.first, outputname);}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00324}00324     \mbox{\hyperlink{_helpers_8cpp_a61bb5ef5a32b19f32711c37692b0da27}{output\_dictionary}}(\mbox{\hyperlink{_helpers_8cpp_aefac69ea7c86f84362f36fe9e71b3ff5}{dictionary}}, dicfile, data\_for\_output.second);}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00325}00325 \}}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00326}00326 }
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00327}\mbox{\hyperlink{_helpers_8cpp_a029e78e50a7c61b6e1f38d06ae3b44df}{00327}} \textcolor{keywordtype}{void} \mbox{\hyperlink{_helpers_8cpp_a029e78e50a7c61b6e1f38d06ae3b44df}{HuffmanDecode}}(\textcolor{keywordtype}{string} inputname, \textcolor{keywordtype}{string} outputname, \textcolor{keywordtype}{string} \mbox{\hyperlink{_helpers_8cpp_aefac69ea7c86f84362f36fe9e71b3ff5}{dictionary}})}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00328}00328 \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00329}00329     pair<map<string, char>, \textcolor{keywordtype}{int}> dictionary\_data = \mbox{\hyperlink{_helpers_8cpp_a9bfac0e0cef3b277060e3eb3d668e07d}{load\_dic\_file}}(\mbox{\hyperlink{_helpers_8cpp_aefac69ea7c86f84362f36fe9e71b3ff5}{dictionary}});}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00330}00330     \mbox{\hyperlink{_helpers_8cpp_ac5cdf0dfe8022023fdf6c94691604f6e}{decode\_from\_binary\_to\_text}}(dictionary\_data.first, dictionary\_data.second, inputname ,outputname);}
+\DoxyCodeLine{\Hypertarget{_helpers_8cpp_source_l00331}00331 \}}
+
+\end{DoxyCode}

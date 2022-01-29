@@ -1,0 +1,50 @@
+\hypertarget{_helpers_8h_source}{}\doxysection{Helpers.\+h}
+\mbox{\hyperlink{_helpers_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00001}00001 \textcolor{preprocessor}{\#ifndef  HELPERS\_H}}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00002}00002 \textcolor{preprocessor}{\#define HELPERS\_H}}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00003}00003 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// ! HELPERS\_H}}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00005}00005 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00006}00006 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00007}00007 \textcolor{preprocessor}{\#include <map>}}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00008}00008 \textcolor{preprocessor}{\#include <utility>}}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00009}00009 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00010}00010 \textcolor{preprocessor}{\#include <bitset>}}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00011}00011 \textcolor{preprocessor}{\#include <cstdlib>}}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00012}00012 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00013}00013 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00015}00015 \textcolor{keywordtype}{int} \mbox{\hyperlink{_helpers_8h_a339ac1d0735c8d445c0b1f2e0c54e43a}{validate\_input\_arguments}}(\textcolor{keywordtype}{int} argc, vector<string> \&arg);}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00016}00016 }
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00017}00017 \textcolor{keywordtype}{void} \mbox{\hyperlink{_helpers_8h_a92b36d9b93772c4f567d7f4747703a1e}{setPathByFlag}}(\textcolor{keywordtype}{string}\& flag, \textcolor{keywordtype}{string}\& path, \textcolor{keywordtype}{string}\& input\_path, \textcolor{keywordtype}{string}\& output\_path, \textcolor{keywordtype}{string}\& dic\_path, \textcolor{keywordtype}{string}\& mode);}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00023}\mbox{\hyperlink{struct_wezel_drzewa}{00023}} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_wezel_drzewa}{WezelDrzewa}}}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00024}00024 \{}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00029}\mbox{\hyperlink{struct_wezel_drzewa_abd7902f9141f05f1dc2a2b571afff739}{00029}}     \textcolor{keyword}{struct }\mbox{\hyperlink{struct_wezel_drzewa}{WezelDrzewa}}* \mbox{\hyperlink{struct_wezel_drzewa_abd7902f9141f05f1dc2a2b571afff739}{parent}} = NULL;}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00034}\mbox{\hyperlink{struct_wezel_drzewa_a335141c8746fc1e61275d12dd7f1945f}{00034}}     \textcolor{keyword}{struct }\mbox{\hyperlink{struct_wezel_drzewa}{WezelDrzewa}} * \mbox{\hyperlink{struct_wezel_drzewa_a335141c8746fc1e61275d12dd7f1945f}{left}} = NULL;}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00039}\mbox{\hyperlink{struct_wezel_drzewa_ac431798e3c0175660b7780e921a0dd52}{00039}}     \textcolor{keyword}{struct }\mbox{\hyperlink{struct_wezel_drzewa}{WezelDrzewa}} * \mbox{\hyperlink{struct_wezel_drzewa_ac431798e3c0175660b7780e921a0dd52}{right}} = NULL;}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00044}\mbox{\hyperlink{struct_wezel_drzewa_a60a79e575d93ba9f64a4ce297a366624}{00044}}     \textcolor{keywordtype}{string} \mbox{\hyperlink{struct_wezel_drzewa_a60a79e575d93ba9f64a4ce297a366624}{ch}};}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00045}\mbox{\hyperlink{struct_wezel_drzewa_acc5adddc1302169df530458b9c3c05d1}{00045}}     \textcolor{keywordtype}{double} \mbox{\hyperlink{struct_wezel_drzewa_acc5adddc1302169df530458b9c3c05d1}{probability}} = NULL;}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00046}00046 \};}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00047}00047 }
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00054}00054 \textcolor{keywordtype}{int} \mbox{\hyperlink{_helpers_8h_a478c7765ee1e38d6e04cce8232106b11}{binary\_to\_decimal}}(\textcolor{keywordtype}{string}\& in);}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00055}00055 }
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00062}00062 \textcolor{keywordtype}{string} \mbox{\hyperlink{_helpers_8h_a6df5ebbafa5429748f30924fb6120df1}{decimal\_to\_binary}}(\textcolor{keywordtype}{int} in);}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00069}00069 pair<string, char> \mbox{\hyperlink{_helpers_8h_a8828f2bbb96fe04bbd16a6d22990828e}{split\_string}}(\textcolor{keywordtype}{string} napis);}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00079}00079 \textcolor{keywordtype}{bool} \mbox{\hyperlink{_helpers_8h_a25086c4548cc124280f5bd1dbe1d06a6}{compare\_by\_prob}}(\textcolor{keyword}{const} \mbox{\hyperlink{struct_wezel_drzewa}{WezelDrzewa}}\& a, \textcolor{keyword}{const} \mbox{\hyperlink{struct_wezel_drzewa}{WezelDrzewa}}\& b);}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00086}00086 map<char, double> \mbox{\hyperlink{_helpers_8h_a3881683c5eb4d532d6b2e418f34219d5}{calculate\_probability}}(\textcolor{keywordtype}{string} inputname);}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00087}00087 }
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00102}00102 \textcolor{keywordtype}{void} \mbox{\hyperlink{_helpers_8h_ab1f573748ea31eaef6af8c4409ad3e2f}{create\_dictionary}}(\mbox{\hyperlink{struct_wezel_drzewa}{WezelDrzewa}}* tree, map<char, string>\& \mbox{\hyperlink{_helpers_8cpp_aefac69ea7c86f84362f36fe9e71b3ff5}{dictionary}}, \textcolor{keywordtype}{string} prevstring);}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00110}00110 \textcolor{keyword}{template} <\textcolor{keyword}{typename} K, \textcolor{keyword}{typename} V>}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00111}00111 \textcolor{keywordtype}{void} \mbox{\hyperlink{_helpers_8h_a61bb5ef5a32b19f32711c37692b0da27}{output\_dictionary}}(map<K, V> \textcolor{keyword}{const}\& m, \textcolor{keywordtype}{string} dicfile, \textcolor{keywordtype}{int} zeros\_added);}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00118}00118 \mbox{\hyperlink{struct_wezel_drzewa}{WezelDrzewa}} \mbox{\hyperlink{_helpers_8h_a8fe8149748d345d742d921476a2a62ad}{create\_tree}}(map<char, double> chars\_with\_prob);}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00126}00126 pair<string, int> \mbox{\hyperlink{_helpers_8h_affe3d4979f442db2f02af01db11fe940}{coded\_message}}(map<char, string> \mbox{\hyperlink{_helpers_8cpp_aefac69ea7c86f84362f36fe9e71b3ff5}{dictionary}}, \textcolor{keywordtype}{string} inputfile);}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00133}00133 \textcolor{keywordtype}{void} \mbox{\hyperlink{_helpers_8h_af91b9270b06c99a9b6ed50e179e41bd7}{output\_to\_binary}}(\textcolor{keywordtype}{string} huffman\_coded\_string, \textcolor{keywordtype}{string} outputfile);}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00140}00140 pair<map<string, char>, \textcolor{keywordtype}{int}> \mbox{\hyperlink{_helpers_8h_a9bfac0e0cef3b277060e3eb3d668e07d}{load\_dic\_file}}(\textcolor{keywordtype}{string} dicFile);}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00149}00149 \textcolor{keywordtype}{void} \mbox{\hyperlink{_helpers_8h_ac5cdf0dfe8022023fdf6c94691604f6e}{decode\_from\_binary\_to\_text}}(map<string, char> decoDic, \textcolor{keywordtype}{int} number\_of\_zeros\_to\_remove, \textcolor{keywordtype}{string} inputname, \textcolor{keywordtype}{string} outputname);}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00150}00150 }
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00158}00158 \textcolor{keywordtype}{void} \mbox{\hyperlink{_helpers_8h_a4d99ba727e5864410abe0da93f9883a1}{HuffmanEncode}}(\textcolor{keywordtype}{string} inputname, \textcolor{keywordtype}{string} outputname, \textcolor{keywordtype}{string} dicfile);}
+\DoxyCodeLine{\Hypertarget{_helpers_8h_source_l00166}00166 \textcolor{keywordtype}{void} \mbox{\hyperlink{_helpers_8h_a029e78e50a7c61b6e1f38d06ae3b44df}{HuffmanDecode}}(\textcolor{keywordtype}{string} inputname, \textcolor{keywordtype}{string} outputname, \textcolor{keywordtype}{string} \mbox{\hyperlink{_helpers_8cpp_aefac69ea7c86f84362f36fe9e71b3ff5}{dictionary}});}
+
+\end{DoxyCode}

@@ -1,0 +1,371 @@
+\hypertarget{_helpers_8h}{}\doxysection{Helpers.\+h File Reference}
+\label{_helpers_8h}\index{Helpers.h@{Helpers.h}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$utility$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$bitset$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_wezel_drzewa}{Wezel\+Drzewa}}
+\begin{DoxyCompactList}\small\item\em Struktura używana przy tworzeniu drzewa, przechowuje znak oraz prawdopodobieństwo jego wystąpienia w tekście. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{_helpers_8h_a339ac1d0735c8d445c0b1f2e0c54e43a}{validate\+\_\+input\+\_\+arguments}} (int argc, vector$<$ string $>$ \&arg)
+\item 
+void \mbox{\hyperlink{_helpers_8h_a92b36d9b93772c4f567d7f4747703a1e}{set\+Path\+By\+Flag}} (string \&flag, string \&path, string \&input\+\_\+path, string \&output\+\_\+path, string \&dic\+\_\+path, string \&mode)
+\item 
+int \mbox{\hyperlink{_helpers_8h_a478c7765ee1e38d6e04cce8232106b11}{binary\+\_\+to\+\_\+decimal}} (string \&in)
+\item 
+string \mbox{\hyperlink{_helpers_8h_a6df5ebbafa5429748f30924fb6120df1}{decimal\+\_\+to\+\_\+binary}} (int in)
+\item 
+pair$<$ string, char $>$ \mbox{\hyperlink{_helpers_8h_a8828f2bbb96fe04bbd16a6d22990828e}{split\+\_\+string}} (string napis)
+\item 
+bool \mbox{\hyperlink{_helpers_8h_a25086c4548cc124280f5bd1dbe1d06a6}{compare\+\_\+by\+\_\+prob}} (const \mbox{\hyperlink{struct_wezel_drzewa}{Wezel\+Drzewa}} \&a, const \mbox{\hyperlink{struct_wezel_drzewa}{Wezel\+Drzewa}} \&b)
+\item 
+map$<$ char, double $>$ \mbox{\hyperlink{_helpers_8h_a3881683c5eb4d532d6b2e418f34219d5}{calculate\+\_\+probability}} (string inputname)
+\item 
+void \mbox{\hyperlink{_helpers_8h_ab1f573748ea31eaef6af8c4409ad3e2f}{create\+\_\+dictionary}} (\mbox{\hyperlink{struct_wezel_drzewa}{Wezel\+Drzewa}} $\ast$tree, map$<$ char, string $>$ \&\mbox{\hyperlink{_helpers_8cpp_aefac69ea7c86f84362f36fe9e71b3ff5}{dictionary}}, string prevstring)
+\item 
+{\footnotesize template$<$typename K , typename V $>$ }\\void \mbox{\hyperlink{_helpers_8h_a61bb5ef5a32b19f32711c37692b0da27}{output\+\_\+dictionary}} (map$<$ K, V $>$ const \&m, string dicfile, int zeros\+\_\+added)
+\item 
+\mbox{\hyperlink{struct_wezel_drzewa}{Wezel\+Drzewa}} \mbox{\hyperlink{_helpers_8h_a8fe8149748d345d742d921476a2a62ad}{create\+\_\+tree}} (map$<$ char, double $>$ chars\+\_\+with\+\_\+prob)
+\item 
+pair$<$ string, int $>$ \mbox{\hyperlink{_helpers_8h_affe3d4979f442db2f02af01db11fe940}{coded\+\_\+message}} (map$<$ char, string $>$ \mbox{\hyperlink{_helpers_8cpp_aefac69ea7c86f84362f36fe9e71b3ff5}{dictionary}}, string inputfile)
+\item 
+void \mbox{\hyperlink{_helpers_8h_af91b9270b06c99a9b6ed50e179e41bd7}{output\+\_\+to\+\_\+binary}} (string huffman\+\_\+coded\+\_\+string, string outputfile)
+\item 
+pair$<$ map$<$ string, char $>$, int $>$ \mbox{\hyperlink{_helpers_8h_a9bfac0e0cef3b277060e3eb3d668e07d}{load\+\_\+dic\+\_\+file}} (string dic\+File)
+\item 
+void \mbox{\hyperlink{_helpers_8h_ac5cdf0dfe8022023fdf6c94691604f6e}{decode\+\_\+from\+\_\+binary\+\_\+to\+\_\+text}} (map$<$ string, char $>$ deco\+Dic, int number\+\_\+of\+\_\+zeros\+\_\+to\+\_\+remove, string inputname, string outputname)
+\item 
+void \mbox{\hyperlink{_helpers_8h_a4d99ba727e5864410abe0da93f9883a1}{Huffman\+Encode}} (string inputname, string outputname, string dicfile)
+\item 
+void \mbox{\hyperlink{_helpers_8h_a029e78e50a7c61b6e1f38d06ae3b44df}{Huffman\+Decode}} (string inputname, string outputname, string \mbox{\hyperlink{_helpers_8cpp_aefac69ea7c86f84362f36fe9e71b3ff5}{dictionary}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_helpers_8h_a478c7765ee1e38d6e04cce8232106b11}\label{_helpers_8h_a478c7765ee1e38d6e04cce8232106b11}} 
+\index{Helpers.h@{Helpers.h}!binary\_to\_decimal@{binary\_to\_decimal}}
+\index{binary\_to\_decimal@{binary\_to\_decimal}!Helpers.h@{Helpers.h}}
+\doxysubsubsection{\texorpdfstring{binary\_to\_decimal()}{binary\_to\_decimal()}}
+{\footnotesize\ttfamily int binary\+\_\+to\+\_\+decimal (\begin{DoxyParamCaption}\item[{string \&}]{in }\end{DoxyParamCaption})}
+
+Funkcja przyjmuje oktet, który zamienia z wartości binarnej na wartość dziesiętną.
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & 8 bitów zapisane jako string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_helpers_8cpp_source_l00062}{62}} of file \mbox{\hyperlink{_helpers_8cpp_source}{Helpers.\+cpp}}.
+
+\mbox{\Hypertarget{_helpers_8h_a3881683c5eb4d532d6b2e418f34219d5}\label{_helpers_8h_a3881683c5eb4d532d6b2e418f34219d5}} 
+\index{Helpers.h@{Helpers.h}!calculate\_probability@{calculate\_probability}}
+\index{calculate\_probability@{calculate\_probability}!Helpers.h@{Helpers.h}}
+\doxysubsubsection{\texorpdfstring{calculate\_probability()}{calculate\_probability()}}
+{\footnotesize\ttfamily map$<$ char, double $>$ calculate\+\_\+probability (\begin{DoxyParamCaption}\item[{string}]{inputname }\end{DoxyParamCaption})}
+
+Funkcja zapisuje wystąpienia znaków do mapy, aby na końcu podzielić ilość wystąpień znaku przez ilość wszystkich znaków w tekście. Otrzymujemy w ten sposób prawdopodobieństwo wystąpienia znaku.
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & nazwa pliku, z którego chcemy wczytać dane \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+map$<$char, double$>$ mapa zawierająca znaki z prawdopodobieństwem ich wysąpienia 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_helpers_8cpp_source_l00119}{119}} of file \mbox{\hyperlink{_helpers_8cpp_source}{Helpers.\+cpp}}.
+
+\mbox{\Hypertarget{_helpers_8h_affe3d4979f442db2f02af01db11fe940}\label{_helpers_8h_affe3d4979f442db2f02af01db11fe940}} 
+\index{Helpers.h@{Helpers.h}!coded\_message@{coded\_message}}
+\index{coded\_message@{coded\_message}!Helpers.h@{Helpers.h}}
+\doxysubsubsection{\texorpdfstring{coded\_message()}{coded\_message()}}
+{\footnotesize\ttfamily pair$<$ string, int $>$ coded\+\_\+message (\begin{DoxyParamCaption}\item[{map$<$ char, string $>$}]{dictionary,  }\item[{string}]{inputfile }\end{DoxyParamCaption})}
+
+Funkcja koduje dane z pliku wejściowego używając słownika stworzonego przez \mbox{\hyperlink{_helpers_8h_ab1f573748ea31eaef6af8c4409ad3e2f}{create\+\_\+dictionary()}}. Po zakodowaniu wszystkich znaków sprawdza czy ilość zer i jedynek jest podzielna przez 8. Jeżeli nie to doklejamy odpowiednią ilość zer na koniec kodu.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dictionary} & słownik utworzony przez \mbox{\hyperlink{_helpers_8h_ab1f573748ea31eaef6af8c4409ad3e2f}{create\+\_\+dictionary()}} \\
+\hline
+{\em filename} & nazwa pliku \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pair$<$string, int$>$ para zawierająca zakodowany tekst oraz ilość zer dodanych do ostatniego oktetu 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_helpers_8cpp_source_l00207}{207}} of file \mbox{\hyperlink{_helpers_8cpp_source}{Helpers.\+cpp}}.
+
+\mbox{\Hypertarget{_helpers_8h_a25086c4548cc124280f5bd1dbe1d06a6}\label{_helpers_8h_a25086c4548cc124280f5bd1dbe1d06a6}} 
+\index{Helpers.h@{Helpers.h}!compare\_by\_prob@{compare\_by\_prob}}
+\index{compare\_by\_prob@{compare\_by\_prob}!Helpers.h@{Helpers.h}}
+\doxysubsubsection{\texorpdfstring{compare\_by\_prob()}{compare\_by\_prob()}}
+{\footnotesize\ttfamily bool compare\+\_\+by\+\_\+prob (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_wezel_drzewa}{Wezel\+Drzewa}} \&}]{a,  }\item[{const \mbox{\hyperlink{struct_wezel_drzewa}{Wezel\+Drzewa}} \&}]{b }\end{DoxyParamCaption})}
+
+Funkcja pomagająca przy sortoaniu węzłów drzewa znajdujących się w wektorze porównująć prawdopodobieństwo.
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & pierwsz węzeł drzewa \\
+\hline
+{\em b} & drgi węzeł drzewa \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true zwraca prawdę jeżeli prawdopodobieństwo zawarte w węźłe a jest większe 
+
+false 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{struct_wezel_drzewa}{Wezel\+Drzewa}} 
+\end{DoxySeeAlso}
+
+
+Definition at line \mbox{\hyperlink{_helpers_8cpp_source_l00114}{114}} of file \mbox{\hyperlink{_helpers_8cpp_source}{Helpers.\+cpp}}.
+
+\mbox{\Hypertarget{_helpers_8h_ab1f573748ea31eaef6af8c4409ad3e2f}\label{_helpers_8h_ab1f573748ea31eaef6af8c4409ad3e2f}} 
+\index{Helpers.h@{Helpers.h}!create\_dictionary@{create\_dictionary}}
+\index{create\_dictionary@{create\_dictionary}!Helpers.h@{Helpers.h}}
+\doxysubsubsection{\texorpdfstring{create\_dictionary()}{create\_dictionary()}}
+{\footnotesize\ttfamily void create\+\_\+dictionary (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_wezel_drzewa}{Wezel\+Drzewa}} $\ast$}]{tree,  }\item[{map$<$ char, string $>$ \&}]{dictionary,  }\item[{string}]{prevstring }\end{DoxyParamCaption})}
+
+Struktura \mbox{\hyperlink{struct_wezel_drzewa}{Wezel\+Drzewa}} jest używana do tworzenia drzewa binarnego. \mbox{\hyperlink{struct_wezel_drzewa}{Wezel\+Drzewa}} oprócz standardowych wartości, zawiera również wartość ch oraz probability, które kolejno oznaczają znak, oraz jego prawdopodobieństwo wystąpienia w tekście. Funkcja reukrencyjnie przechodzi po drzewie tworząc kody huffmana dla poszczególnych znaków. Gdy nie ma możliwości przejścia do kolejnych potomków, utworzony kod(w zapisie binarnym) zostaje dodany jako element mapy, wraz ze znakiem, dla którego kod utworzono.
+
+
+\begin{DoxyParams}{Parameters}
+{\em tree} & gotowe drzewo utworzone przez funkcje \mbox{\hyperlink{_helpers_8h_a8fe8149748d345d742d921476a2a62ad}{create\+\_\+tree()}} \\
+\hline
+{\em dictionary} & mapa do której mają zostać zapisane znaki oraz ich kody \\
+\hline
+{\em prevstring} & zmienna pomocnicza, do które podczas rekurencji doklejane są zera i jedynki \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{_helpers_8h_a8fe8149748d345d742d921476a2a62ad}{create\+\_\+tree()}} 
+\end{DoxySeeAlso}
+
+
+Definition at line \mbox{\hyperlink{_helpers_8cpp_source_l00142}{142}} of file \mbox{\hyperlink{_helpers_8cpp_source}{Helpers.\+cpp}}.
+
+\mbox{\Hypertarget{_helpers_8h_a8fe8149748d345d742d921476a2a62ad}\label{_helpers_8h_a8fe8149748d345d742d921476a2a62ad}} 
+\index{Helpers.h@{Helpers.h}!create\_tree@{create\_tree}}
+\index{create\_tree@{create\_tree}!Helpers.h@{Helpers.h}}
+\doxysubsubsection{\texorpdfstring{create\_tree()}{create\_tree()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_wezel_drzewa}{Wezel\+Drzewa}} create\+\_\+tree (\begin{DoxyParamCaption}\item[{map$<$ char, double $>$}]{chars\+\_\+with\+\_\+prob }\end{DoxyParamCaption})}
+
+Funkcja tworzy drzewo binarne. W pierwszym kroku wartości z mapy utworzonej przez \mbox{\hyperlink{_helpers_8h_a3881683c5eb4d532d6b2e418f34219d5}{calculate\+\_\+probability()}} zamieniane są na \mbox{\hyperlink{struct_wezel_drzewa}{Wezel\+Drzewa}} i wkładane do wektora. Następnie wykorzustjąć węzły zawarte w wektorze zaczynamy budować drzewo. Bierzemy dwa elementy o najmniejszym prawdopodobieństwie i przypisujemy je do nowego \mbox{\hyperlink{struct_wezel_drzewa}{Wezel\+Drzewa}} jako jego dzieci. Następnie sortujemy wektor korzystając z \mbox{\hyperlink{_helpers_8h_a25086c4548cc124280f5bd1dbe1d06a6}{compare\+\_\+by\+\_\+prob()}}. Te dwa korki powtarzamy, aż w wektorze zostanie nam jeden element, który będzie gotowym drzewem huffmana.
+
+
+\begin{DoxyParams}{Parameters}
+{\em chars\+\_\+with\+\_\+prob} & mapa zawierająca znaki z prawdopodobieństwem wystąpienia w tekście \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{struct_wezel_drzewa}{Wezel\+Drzewa}} gotowe drzewo huffmana 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_helpers_8cpp_source_l00168}{168}} of file \mbox{\hyperlink{_helpers_8cpp_source}{Helpers.\+cpp}}.
+
+\mbox{\Hypertarget{_helpers_8h_a6df5ebbafa5429748f30924fb6120df1}\label{_helpers_8h_a6df5ebbafa5429748f30924fb6120df1}} 
+\index{Helpers.h@{Helpers.h}!decimal\_to\_binary@{decimal\_to\_binary}}
+\index{decimal\_to\_binary@{decimal\_to\_binary}!Helpers.h@{Helpers.h}}
+\doxysubsubsection{\texorpdfstring{decimal\_to\_binary()}{decimal\_to\_binary()}}
+{\footnotesize\ttfamily string decimal\+\_\+to\+\_\+binary (\begin{DoxyParamCaption}\item[{int}]{in }\end{DoxyParamCaption})}
+
+Funkcja zamienia liczbę z zapisu dziesiętnego na binarny.
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & liczba do zamiany \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string zwraca liczbę zapisaną binarnie 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_helpers_8cpp_source_l00070}{70}} of file \mbox{\hyperlink{_helpers_8cpp_source}{Helpers.\+cpp}}.
+
+\mbox{\Hypertarget{_helpers_8h_ac5cdf0dfe8022023fdf6c94691604f6e}\label{_helpers_8h_ac5cdf0dfe8022023fdf6c94691604f6e}} 
+\index{Helpers.h@{Helpers.h}!decode\_from\_binary\_to\_text@{decode\_from\_binary\_to\_text}}
+\index{decode\_from\_binary\_to\_text@{decode\_from\_binary\_to\_text}!Helpers.h@{Helpers.h}}
+\doxysubsubsection{\texorpdfstring{decode\_from\_binary\_to\_text()}{decode\_from\_binary\_to\_text()}}
+{\footnotesize\ttfamily void decode\+\_\+from\+\_\+binary\+\_\+to\+\_\+text (\begin{DoxyParamCaption}\item[{map$<$ string, char $>$}]{deco\+Dic,  }\item[{int}]{number\+\_\+of\+\_\+zeros\+\_\+to\+\_\+remove,  }\item[{string}]{inputname,  }\item[{string}]{outputname }\end{DoxyParamCaption})}
+
+Funkcja wczytuje po osiem bitów z pliku binarnego jako char. Następnie przy użyciu \mbox{\hyperlink{_helpers_8h_a6df5ebbafa5429748f30924fb6120df1}{decimal\+\_\+to\+\_\+binary()}} chary zamieniane są na zera i jedynki i doklejone do stringa decodedmessage. W kolejnym kroku przy pomocy słownika deco\+Dic dekodujemy zawartość decoded message i wypisujemy do pliku wyjściowego jako zdekompresowane dane.
+
+
+\begin{DoxyParams}{Parameters}
+{\em deco\+Dic} & słownik utworzony przez \mbox{\hyperlink{_helpers_8h_a9bfac0e0cef3b277060e3eb3d668e07d}{load\+\_\+dic\+\_\+file()}} ~\newline
+ \\
+\hline
+{\em number\+\_\+of\+\_\+zeros\+\_\+to\+\_\+remove} & ilość zer do usunięcia z ostatniego oktetu \\
+\hline
+{\em inputname} & nazwa zkompresowanego pliku \\
+\hline
+{\em outputname} & nazwa pliku po dekompresji \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_helpers_8cpp_source_l00278}{278}} of file \mbox{\hyperlink{_helpers_8cpp_source}{Helpers.\+cpp}}.
+
+\mbox{\Hypertarget{_helpers_8h_a029e78e50a7c61b6e1f38d06ae3b44df}\label{_helpers_8h_a029e78e50a7c61b6e1f38d06ae3b44df}} 
+\index{Helpers.h@{Helpers.h}!HuffmanDecode@{HuffmanDecode}}
+\index{HuffmanDecode@{HuffmanDecode}!Helpers.h@{Helpers.h}}
+\doxysubsubsection{\texorpdfstring{HuffmanDecode()}{HuffmanDecode()}}
+{\footnotesize\ttfamily void Huffman\+Decode (\begin{DoxyParamCaption}\item[{string}]{inputname,  }\item[{string}]{outputname,  }\item[{string}]{dictionary }\end{DoxyParamCaption})}
+
+Funkcja dekopresująca dane z podanego pliku. Żeby skorzystać z tej funkcji musimy podać nazwę pliku do dekompresji, oraz nazwę pliku zawierającego słownik.
+
+
+\begin{DoxyParams}{Parameters}
+{\em inputname} & nazwa pliku do dekompresji \\
+\hline
+{\em outputname} & nazwa pliku po dekompresji \\
+\hline
+{\em dictionary} & nazwa pliku zawierająca słownik \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_helpers_8cpp_source_l00327}{327}} of file \mbox{\hyperlink{_helpers_8cpp_source}{Helpers.\+cpp}}.
+
+\mbox{\Hypertarget{_helpers_8h_a4d99ba727e5864410abe0da93f9883a1}\label{_helpers_8h_a4d99ba727e5864410abe0da93f9883a1}} 
+\index{Helpers.h@{Helpers.h}!HuffmanEncode@{HuffmanEncode}}
+\index{HuffmanEncode@{HuffmanEncode}!Helpers.h@{Helpers.h}}
+\doxysubsubsection{\texorpdfstring{HuffmanEncode()}{HuffmanEncode()}}
+{\footnotesize\ttfamily void Huffman\+Encode (\begin{DoxyParamCaption}\item[{string}]{inputname,  }\item[{string}]{outputname,  }\item[{string}]{dicfile }\end{DoxyParamCaption})}
+
+Funkcja kompresująca zawartość pliku. Tworzony jest zkompresowany plik, oraz słownik, który jest wymagany do dekompresji.
+
+
+\begin{DoxyParams}{Parameters}
+{\em inputname} & nazwa pliku do kompresji \\
+\hline
+{\em outputname} & nazwa pliku po kompresji \\
+\hline
+{\em dicfile} & nazwa słownika \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_helpers_8cpp_source_l00314}{314}} of file \mbox{\hyperlink{_helpers_8cpp_source}{Helpers.\+cpp}}.
+
+\mbox{\Hypertarget{_helpers_8h_a9bfac0e0cef3b277060e3eb3d668e07d}\label{_helpers_8h_a9bfac0e0cef3b277060e3eb3d668e07d}} 
+\index{Helpers.h@{Helpers.h}!load\_dic\_file@{load\_dic\_file}}
+\index{load\_dic\_file@{load\_dic\_file}!Helpers.h@{Helpers.h}}
+\doxysubsubsection{\texorpdfstring{load\_dic\_file()}{load\_dic\_file()}}
+{\footnotesize\ttfamily pair$<$ map$<$ string, char $>$, int $>$ load\+\_\+dic\+\_\+file (\begin{DoxyParamCaption}\item[{string}]{dic\+File }\end{DoxyParamCaption})}
+
+Funckja wczytuje pierwszą linijkę z pliku, w której zapisano ilość zer dodaną do ostatniego oktetu wiadmości. Następnie wczytujemy kolejne linijki zawierjące znaki(zapiasne jako int) oraz ich odpowiedniki w kodzie huffmana. Te wartości wstawiamy do mapy, która będzie użyta do odkodowania danych.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dic\+File} & nazwa pliku słownika \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pair\texorpdfstring{$<$}{<}map$<$string, char$>$, int\texorpdfstring{$>$}{>} para zawierająca gotowy słownik, oraz liczbę zer dodaną do ostatnie oktetu 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_helpers_8cpp_source_l00258}{258}} of file \mbox{\hyperlink{_helpers_8cpp_source}{Helpers.\+cpp}}.
+
+\mbox{\Hypertarget{_helpers_8h_a61bb5ef5a32b19f32711c37692b0da27}\label{_helpers_8h_a61bb5ef5a32b19f32711c37692b0da27}} 
+\index{Helpers.h@{Helpers.h}!output\_dictionary@{output\_dictionary}}
+\index{output\_dictionary@{output\_dictionary}!Helpers.h@{Helpers.h}}
+\doxysubsubsection{\texorpdfstring{output\_dictionary()}{output\_dictionary()}}
+{\footnotesize\ttfamily template$<$typename K , typename V $>$ \\
+void output\+\_\+dictionary (\begin{DoxyParamCaption}\item[{map$<$ K, V $>$ const \&}]{m,  }\item[{string}]{dicfile,  }\item[{int}]{zeros\+\_\+added }\end{DoxyParamCaption})}
+
+Funkcja wypisująca słownik(mapę) utworzony przez \mbox{\hyperlink{_helpers_8h_ab1f573748ea31eaef6af8c4409ad3e2f}{create\+\_\+dictionary()}} do pliku.
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & mapa z której pobieramy wartości \\
+\hline
+{\em filename} & nazwa pliku \\
+\hline
+{\em zeros\+\_\+added} & ilość zer dodana do ostatniego oktetu \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_helpers_8cpp_source_l00156}{156}} of file \mbox{\hyperlink{_helpers_8cpp_source}{Helpers.\+cpp}}.
+
+\mbox{\Hypertarget{_helpers_8h_af91b9270b06c99a9b6ed50e179e41bd7}\label{_helpers_8h_af91b9270b06c99a9b6ed50e179e41bd7}} 
+\index{Helpers.h@{Helpers.h}!output\_to\_binary@{output\_to\_binary}}
+\index{output\_to\_binary@{output\_to\_binary}!Helpers.h@{Helpers.h}}
+\doxysubsubsection{\texorpdfstring{output\_to\_binary()}{output\_to\_binary()}}
+{\footnotesize\ttfamily void output\+\_\+to\+\_\+binary (\begin{DoxyParamCaption}\item[{string}]{huffman\+\_\+coded\+\_\+string,  }\item[{string}]{outputfile }\end{DoxyParamCaption})}
+
+Funkcja przyjmuje zakodowaną wiadomość jako string. Następnie w pętli będziemy w pętli dzielić tekst na oktety, które zostaną zapisane jako znaki wpliku wyjściowym(.bin). Do zamiany oktetu na char używamy \mbox{\hyperlink{_helpers_8h_a478c7765ee1e38d6e04cce8232106b11}{binary\+\_\+to\+\_\+decimal()}} 
+\begin{DoxyParams}{Parameters}
+{\em huffman\+\_\+coded\+\_\+string} & zakodowane dane wejściowe w postaci zer i jedynek \\
+\hline
+{\em filename} & nazwa pliku, do którego będziemy zapisywać dane w postaci binarnej \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_helpers_8cpp_source_l00234}{234}} of file \mbox{\hyperlink{_helpers_8cpp_source}{Helpers.\+cpp}}.
+
+\mbox{\Hypertarget{_helpers_8h_a92b36d9b93772c4f567d7f4747703a1e}\label{_helpers_8h_a92b36d9b93772c4f567d7f4747703a1e}} 
+\index{Helpers.h@{Helpers.h}!setPathByFlag@{setPathByFlag}}
+\index{setPathByFlag@{setPathByFlag}!Helpers.h@{Helpers.h}}
+\doxysubsubsection{\texorpdfstring{setPathByFlag()}{setPathByFlag()}}
+{\footnotesize\ttfamily void set\+Path\+By\+Flag (\begin{DoxyParamCaption}\item[{string \&}]{flag,  }\item[{string \&}]{path,  }\item[{string \&}]{input\+\_\+path,  }\item[{string \&}]{output\+\_\+path,  }\item[{string \&}]{dic\+\_\+path,  }\item[{string \&}]{mode }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_helpers_8cpp_source_l00043}{43}} of file \mbox{\hyperlink{_helpers_8cpp_source}{Helpers.\+cpp}}.
+
+\mbox{\Hypertarget{_helpers_8h_a8828f2bbb96fe04bbd16a6d22990828e}\label{_helpers_8h_a8828f2bbb96fe04bbd16a6d22990828e}} 
+\index{Helpers.h@{Helpers.h}!split\_string@{split\_string}}
+\index{split\_string@{split\_string}!Helpers.h@{Helpers.h}}
+\doxysubsubsection{\texorpdfstring{split\_string()}{split\_string()}}
+{\footnotesize\ttfamily pair$<$ string, char $>$ split\+\_\+string (\begin{DoxyParamCaption}\item[{string}]{napis }\end{DoxyParamCaption})}
+
+Funkcja dzieli podany napis na dwie części po napotkaniu znaku spacji.
+
+
+\begin{DoxyParams}{Parameters}
+{\em napis} & wejściowy string zawierający dwie wartości oddzielone spacją \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pair$<$string, char$>$ zwraca dwie wartości\+: kod huffmana, znak ASCII zapisany jako int 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_helpers_8cpp_source_l00087}{87}} of file \mbox{\hyperlink{_helpers_8cpp_source}{Helpers.\+cpp}}.
+
+\mbox{\Hypertarget{_helpers_8h_a339ac1d0735c8d445c0b1f2e0c54e43a}\label{_helpers_8h_a339ac1d0735c8d445c0b1f2e0c54e43a}} 
+\index{Helpers.h@{Helpers.h}!validate\_input\_arguments@{validate\_input\_arguments}}
+\index{validate\_input\_arguments@{validate\_input\_arguments}!Helpers.h@{Helpers.h}}
+\doxysubsubsection{\texorpdfstring{validate\_input\_arguments()}{validate\_input\_arguments()}}
+{\footnotesize\ttfamily int validate\+\_\+input\+\_\+arguments (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{vector$<$ string $>$ \&}]{arg }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_helpers_8cpp_source_l00016}{16}} of file \mbox{\hyperlink{_helpers_8cpp_source}{Helpers.\+cpp}}.
+
